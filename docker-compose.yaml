@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+    redis:
+        container_name: "realworld-redis"
+        image: redis:alpine
+        ports:
+            - 6379:6379
+        volumes:
+            - ./docker/redis:/var/lib/redis
+        restart: unless-stopped
+
+    mongo:
+        container_name: "realworld-mongo"
+        image: mongo
+        restart: unless-stopped
+        ports:
+            - 27017:27017

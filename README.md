@@ -2,6 +2,14 @@
 
 # MicroservicesRealworldExampleApp
 
+
+* run `docker-compose up -d`
+* create the mongo db:
+```
+docker exec -it realworld-mongo sh
+use realworld
+```
+
 This project was generated using [Nx](https://nx.dev).
 
 <p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>

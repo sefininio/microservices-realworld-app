@@ -1,0 +1,16 @@
+{
+  "configurations": [
+    {
+      "name": "Debug feature user",
+      "type": "node",
+      "request": "attach",
+      "port": 57741
+    },
+    {
+      "name": "Debug feature atricle",
+      "type": "node",
+      "request": "attach",
+      "port": 57781
+    },
+  ]
+}

@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@microservices-realworld-example-app/models": [
+        "libs/models/src/index.ts"
+      ],
+      "@microservices-realworld-example-app/shared": [
+        "libs/shared/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
