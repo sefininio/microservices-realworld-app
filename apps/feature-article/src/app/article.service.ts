@@ -15,6 +15,7 @@ import { StringUtilsService, PromisifyHttpService } from '@microservices-realwor
 import { Model } from 'mongoose';
 import { Article, ArticleDocument } from './schemas/article.schema';
 import { Comment, CommentDocument } from './schemas/comment.schema';
+import { FavoriteOperation } from './enums/favorite.enum';
 
 @Injectable()
 export class ArticleService {
@@ -93,6 +94,20 @@ export class ArticleService {
       deletedAt: new Date(),
     };
     return await this.commentModel.findOneAndUpdate({_id: id}, update, {new: true, useFindAndModify: false});
+  }
+
+  async modifyFavorite(slug: string, op: FavoriteOperation): Promise<ArticleDto | null> {
+    const article = await this.articleModel.findOne({slug}).exec();
+    if (article.favoritesCount === 0 && op === FavoriteOperation.Decrement) {
+      return article;
+    }
+
+    const update = {
+      $inc: { favoritesCount: op === FavoriteOperation.Increment ? 1 : -1 },
+      updatedAt: new Date(),
+    };
+
+    return await this.articleModel.findOneAndUpdate({slug}, update, {new: true, useFindAndModify: false});
   }
 
 }

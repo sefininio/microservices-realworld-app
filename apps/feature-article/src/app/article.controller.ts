@@ -8,6 +8,7 @@ import {
 } from '@microservices-realworld-example-app/models';
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { ArticleService } from './article.service';
+import { FavoriteOperation } from './enums/favorite.enum';
 
 
 @Controller('/articles')
@@ -63,6 +64,16 @@ export class ArticleController {
   @Delete('/:slug/comments/:id')
   deleteComment(@Param('slug') slug: string, @Param('id') id: string): Promise<CommentDto | null> {
     return this.articleService.deleteComment(id);
+  }
+
+  @Post('/:slug/favorite')
+  addFavorite(@Param('slug') slug: string): Promise<ArticleDto | null> {
+    return this.articleService.modifyFavorite(slug, FavoriteOperation.Increment);
+  }
+
+  @Delete('/:slug/favorite')
+  removeFavorite(@Param('slug') slug: string): Promise<ArticleDto | null> {
+    return this.articleService.modifyFavorite(slug, FavoriteOperation.Decrement);
   }
 
 }

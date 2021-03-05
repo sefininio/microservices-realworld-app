@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Mongoose, Types } from 'mongoose';
-import { Comment } from './comment.schema';
+import { Document } from 'mongoose';
 
 export type ArticleDocument = Article & Document;
 
