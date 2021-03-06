@@ -1,14 +1,27 @@
 
 
-# MicroservicesRealworldExampleApp
+# Microservices Realworld Example App
 
+A [realworld app](https://github.com/gothinkster/realworld) micro-services implementation using:
+- [NX.dev](https://nx.dev/latest/node/getting-started/getting-started)
+- [Nest.js](https://docs.nestjs.com/)
+- [Mongoose](https://mongoosejs.com/) using Nest.js module
+- [GraphQL](https://www.apollographql.com/) using Nest.js module
+- TypeScript
+- MongoDB for service persistence
+- Queue implementation over Redis
 
-* run `docker-compose up -d`
-* create the mongo db:
+## Application Bootstrap
+
+* Run `docker-compose up -d`
+* Create the mongo db:
 ```
 docker exec -it realworld-mongo sh
 use realworld
 ```
+* Change `.env` file values if required.
+* Run all services using `yarn start:all`
+*
 
 This project was generated using [Nx](https://nx.dev).
 
