@@ -5,7 +5,9 @@ export type ArticleDocument = Article & Document;
 
 @Schema()
 export class Article {
-  @Prop()
+  _id: string;
+
+  @Prop({unique: true})
   slug: string;
 
   @Prop({required: true})

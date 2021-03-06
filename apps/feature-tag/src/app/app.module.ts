@@ -3,8 +3,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { SharedModule } from '@microservices-realworld-example-app/shared';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { Tag, TagSchema } from './schemas/tag.schema';
+import { TagController } from './tag.controller';
+import { TagService } from './tag.service';
 
 @Module({
   imports: [
@@ -12,14 +13,16 @@ import { AppService } from './app.service';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         uri: configService.get<string>('mongo.uri'),
+        useCreateIndex: true,
       }),
       inject: [ConfigService],
     }),
     MongooseModule.forFeature([
+      { name: Tag.name, schema: TagSchema }
     ]),
     SharedModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [TagController],
+  providers: [TagService],
 })
 export class AppModule {}

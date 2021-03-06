@@ -12,5 +12,11 @@
       "request": "attach",
       "port": 57781
     },
+    {
+      "name": "Debug feature tag",
+      "type": "node",
+      "request": "attach",
+      "port": 57761
+    },
   ]
 }

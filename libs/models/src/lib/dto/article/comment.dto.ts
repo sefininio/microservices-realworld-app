@@ -1,4 +1,5 @@
 export class CommentDto {
+  readonly _id: string;
   readonly authorId: string;
   readonly articleId: string;
   readonly body: string;

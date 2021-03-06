@@ -5,6 +5,8 @@ export type CommentDocument = Comment & Document;
 
 @Schema()
 export class Comment {
+  _id: string;
+
   @Prop({required: true})
   authorId: string;
 

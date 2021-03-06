@@ -1,0 +1,340 @@
+{
+	"info": {
+		"_postman_id": "24c7abff-3c22-4e65-a928-ee37f6219d2b",
+		"name": "realworld",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"momo14@gmail.com\",\n    \"password\": \"momo141415\",\n    \"username\": \"momo14\"    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3334/api/user",
+							"host": [
+								"localhost"
+							],
+							"port": "3334",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"momo14@gmail.com\",\n    \"password\": \"momo141415\",\n    \"username\": \"momo14\"    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3334/api/user/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3334",
+							"path": [
+								"api",
+								"user",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"momo14@gmail.com\",\n    \"password\": \"momo141415\",\n    \"username\": \"momo14\"    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3334/api/user/6042c157075e6b42ddca0ee6",
+							"host": [
+								"localhost"
+							],
+							"port": "3334",
+							"path": [
+								"api",
+								"user",
+								"6042c157075e6b42ddca0ee6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by username",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"momo14@gmail.com\",\n    \"password\": \"momo141415\",\n    \"username\": \"momo14\"    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3334/api/user/username/momo14",
+							"host": [
+								"localhost"
+							],
+							"port": "3334",
+							"path": [
+								"api",
+								"user",
+								"username",
+								"momo14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"momo14@gmail.com\",\n    \"password\": \"momo141415\",\n    \"username\": \"momo14\"    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3334/api/user/email/momo14@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "3334",
+							"path": [
+								"api",
+								"user",
+								"email",
+								"momo14@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"momo14@gmail.com\",\n    \"bio\": \"this is my bio\",\n    \"image\": \"http://link.to/image.jpg\",\n    \"username\": \"momo14\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3334/api/user",
+							"host": [
+								"localhost"
+							],
+							"port": "3334",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tag",
+			"item": [
+				{
+					"name": "get tags",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tagName\": \"react\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3335/api/tags",
+							"host": [
+								"localhost"
+							],
+							"port": "3335",
+							"path": [
+								"api",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create tag",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tagName\": \"react\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3335/api/tags",
+							"host": [
+								"localhost"
+							],
+							"port": "3335",
+							"path": [
+								"api",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "profile",
+			"item": []
+		},
+		{
+			"name": "article",
+			"item": [
+				{
+					"name": "get all articles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3337/api/articles",
+							"host": [
+								"localhost"
+							],
+							"port": "3337",
+							"path": [
+								"api",
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create article",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"nx workshop 2021\",\n    \"body\": \"the post body\",\n    \"description\": \"the post desc\",\n    \"authorId\": \"6040887b743b0be5e65b5b47\",\n    \"tagList\": [\"nx\", \"nest.js\", \"realworld\", \"graphql\", \"micro-services\", \"mongoose\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3337/api/articles",
+							"host": [
+								"localhost"
+							],
+							"port": "3337",
+							"path": [
+								"api",
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get article by slug",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3337/api/articles/nx-nest-and-graphql-realworld-micro-services-workshop-2021-8n7udp",
+							"host": [
+								"localhost"
+							],
+							"port": "3337",
+							"path": [
+								"api",
+								"articles",
+								"nx-nest-and-graphql-realworld-micro-services-workshop-2021-8n7udp"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

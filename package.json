@@ -5,6 +5,7 @@
   "scripts": {
     "nx": "nx",
     "start": "nx serve",
+    "start:all": "nx run-many --target=serve --all --parallel --maxParallel=6 --with-deps",
     "build": "nx build",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",

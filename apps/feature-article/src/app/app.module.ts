@@ -14,6 +14,7 @@ import { Comment, CommentSchema } from './schemas/comment.schema';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         uri: configService.get<string>('mongo.uri'),
+        useCreateIndex: true,
       }),
       inject: [ConfigService],
     }),

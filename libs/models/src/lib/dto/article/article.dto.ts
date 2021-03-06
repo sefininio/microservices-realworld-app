@@ -1,4 +1,5 @@
 export class ArticleDto {
+  readonly _id: string;
   readonly slug: string;
   readonly authorId: string;
   readonly title: string;

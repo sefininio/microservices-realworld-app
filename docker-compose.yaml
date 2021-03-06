@@ -13,6 +13,8 @@ services:
     mongo:
         container_name: "realworld-mongo"
         image: mongo
-        restart: unless-stopped
         ports:
             - 27017:27017
+        volumes:
+            - ./docker/mongo:/data/db
+        restart: unless-stopped
