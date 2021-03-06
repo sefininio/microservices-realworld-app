@@ -39,5 +39,4 @@ testem.log
 Thumbs.db
 
 # data
-/docker/mongo
-/docker/redis
+/docker
