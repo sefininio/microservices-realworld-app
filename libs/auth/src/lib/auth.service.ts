@@ -1,20 +1,22 @@
 import { UserDto } from '@microservices-realworld-example-app/models';
+import { PromisifyHttpService } from '@microservices-realworld-example-app/shared';
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { User, UserDocument } from './schemas/user.schema';
-import { UserService } from './user.service';
 
 
 @Injectable()
 export class AuthService {
 
+  userFeatureBaseUrl: string;
+
   constructor(
-    @InjectModel(User.name) private userModel: Model<UserDocument>,
-    private readonly userService: UserService,
     private readonly jwtService: JwtService,
-  ) {}
+    private promisifyHttp: PromisifyHttpService,
+    private readonly configService: ConfigService,
+  ) {
+    this.userFeatureBaseUrl = this.configService.get<string>('features.user.baseUrl');
+  }
 
   /**
    *
@@ -24,7 +26,7 @@ export class AuthService {
    * @param loginDto The login details, {email, password}
    */
    async validateUser(username: string, password: string): Promise<any> {
-    const user: UserDto = await this.userService.findOne({email: username});
+    const user: UserDto = await this.promisifyHttp.get(`${this.userFeatureBaseUrl}/user/email/${username}`);
 
     if (user && user.password === password) {
       return user;

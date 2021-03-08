@@ -20,7 +20,8 @@
       ],
       "@microservices-realworld-example-app/shared": [
         "libs/shared/src/index.ts"
-      ]
+      ],
+      "@microservices-realworld-example-app/auth": ["libs/auth/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

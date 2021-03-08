@@ -7,5 +7,6 @@ module.exports = {
     '<rootDir>/apps/feature-user',
     '<rootDir>/libs/models',
     '<rootDir>/libs/shared',
+    '<rootDir>/libs/auth',
   ],
 };

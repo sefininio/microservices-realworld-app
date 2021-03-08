@@ -1,12 +1,12 @@
-import { Body, Controller, Get, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '@microservices-realworld-example-app/auth';
 import {
   CreateUserDto,
   UpdateUserDto,
-  UserDto,
+  UserDto
 } from '@microservices-realworld-example-app/models';
-
+import { Body, Controller, Get, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
-import { JwtAuthGuard } from './guards/jwt-auth.guard';
+
 
 @Controller('/user')
 export class UserController {
@@ -43,6 +43,7 @@ export class UserController {
     return this.userService.create(body);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put('/')
   updateUser(@Body() body: UpdateUserDto): Promise<UserDto | null> {
     return this.userService.update(body);
