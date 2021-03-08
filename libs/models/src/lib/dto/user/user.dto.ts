@@ -8,3 +8,7 @@ export class UserDto {
   readonly createdAt: Date;
   readonly updatedAt: Date;
 }
+
+export class LoggedInUserDto extends UserDto {
+  readonly token: string;
+}

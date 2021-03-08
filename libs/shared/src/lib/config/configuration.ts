@@ -4,6 +4,9 @@ export default () => ({
     // @ts-ignore
     uri: process.env.MONGO_URI,
   },
+  auth: {
+    secret: process.env.JWT_SECRET,
+  },
   features: {
     user: {
       // @ts-ignore

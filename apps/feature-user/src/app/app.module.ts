@@ -1,12 +1,9 @@
-import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SharedModule } from '@microservices-realworld-example-app/shared';
-
+import { AuthModule } from '@microservices-realworld-example-app/auth';
+import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './schemas/user.schema';
-
-import { AuthController } from './auth.controller';
-import { AuthService } from './auth.service';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 
@@ -22,13 +19,12 @@ import { UserService } from './user.service';
     }),
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     SharedModule,
+    AuthModule,
   ],
   controllers: [
-    AuthController,
     UserController,
   ],
   providers: [
-    AuthService,
     UserService,
   ],
 })
