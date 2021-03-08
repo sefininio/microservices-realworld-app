@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
 import {
   CreateUserDto,
   UpdateUserDto,
@@ -6,10 +6,17 @@ import {
 } from '@microservices-realworld-example-app/models';
 
 import { UserService } from './user.service';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 @Controller('/user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/me')
+  getMe(@Req() req): Promise<UserDto> {
+    return req.user;
+  }
 
   @Get('/users')
   getUsers(): Promise<UserDto[]> {

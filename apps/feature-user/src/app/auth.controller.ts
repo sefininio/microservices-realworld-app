@@ -1,15 +1,19 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { LoginUserDto } from '@microservices-realworld-example-app/models';
-
+import { Controller, Post, Request, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { LocalAuthGuard } from './guards/local-auth.guard';
+import { UserService } from './user.service';
 
-@Controller('/users')
+@Controller('/auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly userService: UserService,
+  ) {}
 
+  @UseGuards(LocalAuthGuard)
   @Post('/login')
-  login(@Body() body: LoginUserDto) {
-    return 'logged in';
+  async login(@Request() req) {
+    return this.authService.login(req.user);
   }
 
 }
