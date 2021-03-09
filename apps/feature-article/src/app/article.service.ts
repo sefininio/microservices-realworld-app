@@ -1,21 +1,24 @@
+import {
+  ArticleDto,
+  CommentDto, CreateArticleCommentDto,
+  CreateArticleDto,
+  FavoriteOperation,
+  FindAllArticleQueryDto,
+  QueueEvents,
+  Queues,
+  UpdateArticleDto,
+  UserDto
+} from '@microservices-realworld-example-app/models';
+import { PromisifyHttpService, StringUtilsService } from '@microservices-realworld-example-app/shared';
+import { InjectQueue } from '@nestjs/bull';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
-import {
-  CreateArticleCommentDto,
-  CreateArticleDto,
-  FindAllArticleQueryDto,
-  UpdateArticleDto,
-  ArticleDto,
-  CommentDto,
-  UserDto,
-} from '@microservices-realworld-example-app/models';
-import { StringUtilsService, PromisifyHttpService } from '@microservices-realworld-example-app/shared';
-
+import { Queue } from 'bull';
 import { Model } from 'mongoose';
 import { Article, ArticleDocument } from './schemas/article.schema';
 import { Comment, CommentDocument } from './schemas/comment.schema';
-import { FavoriteOperation } from './enums/favorite.enum';
+
 
 @Injectable()
 export class ArticleService {
@@ -25,6 +28,7 @@ export class ArticleService {
   constructor(
     @InjectModel(Article.name) private articleModel: Model<ArticleDocument>,
     @InjectModel(Comment.name) private commentModel: Model<CommentDocument>,
+    @InjectQueue(Queues.Tags) private tagsQueue: Queue,
     private promisifyHttp: PromisifyHttpService,
     private stringUtils: StringUtilsService,
     private configService: ConfigService,
@@ -70,6 +74,16 @@ export class ArticleService {
   }
 
   async create(body: CreateArticleDto, user: UserDto): Promise<ArticleDto | null> {
+    const { tagList } = body;
+
+    if (tagList && tagList.length) {
+      // publish the tagList in a EvaluateTag message on the Tags queue
+      await this.tagsQueue.add(QueueEvents.EvaluateTags, {
+        tagList,
+      });
+    }
+
+    // save the new article
     const article = {
       ...body,
       authorId: user._id,
@@ -79,8 +93,19 @@ export class ArticleService {
   }
 
   async update(slug: string, body: UpdateArticleDto, user: UserDto): Promise<ArticleDto | null> {
+    const { tagList } = body;
+
+    if (tagList && tagList.length) {
+      // publish the tagList in a EvaluateTag message on the Tags queue
+      await this.tagsQueue.add(QueueEvents.EvaluateTags, {
+        tagList,
+      });
+    }
+
+    // only original author is allowed to update
     await this.isUserArticleAuthor(user, slug);
 
+    // save the updated article
     const update = {
       ...body,
       slug: this.stringUtils.slugify(body.title),
