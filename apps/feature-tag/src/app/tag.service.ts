@@ -20,4 +20,14 @@ export class TagService {
     return await this.tagModel.create(body);
   }
 
+  async batchCreate(items: CreateTagDto[]): Promise<any> {
+    const toCreateItems = items.map(item => ({
+      insertOne: {
+        document: item,
+      },
+    }));
+
+    return await this.tagModel.bulkWrite(toCreateItems);
+  }
+
 }

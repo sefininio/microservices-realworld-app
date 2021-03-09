@@ -3,12 +3,12 @@ import {
   ArticleDto,
   CommentDto, CreateArticleCommentDto,
   CreateArticleDto,
+  FavoriteOperation,
   FindAllArticleQueryDto,
   UpdateArticleDto
 } from '@microservices-realworld-example-app/models';
 import { Body, Controller, Delete, Get, Param, Post, Put, Query, Req, UseGuards } from '@nestjs/common';
 import { ArticleService } from './article.service';
-import { FavoriteOperation } from './enums/favorite.enum';
 
 
 @Controller('/articles')
