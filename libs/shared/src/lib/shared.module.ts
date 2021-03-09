@@ -1,8 +1,8 @@
 import { HttpModule, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-
-import { StringUtilsService, PromisifyHttpService } from './services';
 import configuration from './config/configuration';
+import { PromisifyHttpService, StringUtilsService } from './services';
+
 
 @Module({
   imports: [

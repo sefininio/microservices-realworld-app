@@ -1,5 +1,5 @@
 import { QueueEvents, Queues } from '@microservices-realworld-example-app/models';
-import { Processor, Process } from '@nestjs/bull';
+import { Process, Processor } from '@nestjs/bull';
 import { Injectable } from '@nestjs/common';
 import { Job } from 'bull';
 import { difference } from 'lodash';

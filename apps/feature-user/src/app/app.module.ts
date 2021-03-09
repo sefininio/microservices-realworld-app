@@ -1,5 +1,5 @@
-import { SharedModule } from '@microservices-realworld-example-app/shared';
 import { AuthModule } from '@microservices-realworld-example-app/auth';
+import { SharedModule } from '@microservices-realworld-example-app/shared';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';

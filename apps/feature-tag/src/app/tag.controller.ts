@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CreateTagDto, TagDto } from '@microservices-realworld-example-app/models';
-
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { TagService } from './tag.service';
+
 
 @Controller('/tags')
 export class TagController {

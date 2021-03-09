@@ -1,15 +1,14 @@
+import { Queues } from '@microservices-realworld-example-app/models';
+import { SharedModule } from '@microservices-realworld-example-app/shared';
+import { BullModule } from '@nestjs/bull';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { SharedModule } from '@microservices-realworld-example-app/shared';
-
+import { EvaluateTagsConsumer } from './handlers/evaluateTags.consumer';
 import { Tag, TagSchema } from './schemas/tag.schema';
 import { TagController } from './tag.controller';
 import { TagService } from './tag.service';
-import { BullModule } from '@nestjs/bull';
-import { Queues } from '@microservices-realworld-example-app/models';
-import { join } from 'path';
-import { EvaluateTagsConsumer } from './handlers/evaluateTags.consumer';
+
 
 @Module({
   imports: [

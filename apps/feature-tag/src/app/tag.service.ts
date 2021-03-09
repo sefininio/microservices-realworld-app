@@ -1,6 +1,6 @@
+import { CreateTagDto, TagDto } from '@microservices-realworld-example-app/models';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { CreateTagDto, TagDto } from '@microservices-realworld-example-app/models';
 import { Model } from 'mongoose';
 import { Tag, TagDocument } from './schemas/tag.schema';
 
