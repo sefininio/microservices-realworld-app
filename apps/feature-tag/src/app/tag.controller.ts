@@ -7,11 +7,22 @@ import { TagService } from './tag.service';
 export class TagController {
   constructor(private readonly tagService: TagService) {}
 
+  /**
+   * Returns all tags
+   *
+   * @returns string[]
+   */
   @Get()
   listTags(): Promise<string[]> {
     return this.tagService.findAll();
   }
 
+  /**
+   * Creates a tag
+   *
+   * @param body CreateTagDto
+   * @returns TagDto | null
+   */
   @Post()
   create(@Body() body: CreateTagDto): Promise<TagDto | null> {
     return this.tagService.create(body);

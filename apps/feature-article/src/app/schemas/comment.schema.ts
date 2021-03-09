@@ -3,7 +3,10 @@ import { Document } from 'mongoose';
 
 export type CommentDocument = Comment & Document;
 
-@Schema()
+/**
+ * The Comment mongoose schema
+ */
+ @Schema()
 export class Comment {
   _id: string;
 

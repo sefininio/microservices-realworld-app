@@ -3,7 +3,10 @@ import { Document } from 'mongoose';
 
 export type ArticleDocument = Article & Document;
 
-@Schema()
+/**
+ * The Article mongoose schema
+ */
+ @Schema()
 export class Article {
   _id: string;
 

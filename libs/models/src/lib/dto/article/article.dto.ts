@@ -1,3 +1,6 @@
+/**
+ * Article response
+ */
 export class ArticleDto {
   readonly _id: string;
   readonly slug: string;

@@ -1,6 +1,9 @@
 import { IsNotEmpty } from 'class-validator';
 
-export class CreateArticleCommentDto {
+/**
+ * Comment create request object
+ */
+ export class CreateArticleCommentDto {
   @IsNotEmpty()
   readonly body: string;
 }

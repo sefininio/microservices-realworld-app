@@ -1,5 +1,8 @@
 import { IsNotEmpty } from 'class-validator';
 
+/**
+ * Article create request object
+ */
 export class CreateArticleDto {
 
   @IsNotEmpty()

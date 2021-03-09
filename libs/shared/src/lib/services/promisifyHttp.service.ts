@@ -1,6 +1,9 @@
 import { HttpService, Injectable } from '@nestjs/common';
 import { map } from 'rxjs/operators';
 
+/**
+ * Turn HttpService <Observable<Response<data>> into Promise<data>
+ */
 @Injectable()
 export class PromisifyHttpService {
   constructor(

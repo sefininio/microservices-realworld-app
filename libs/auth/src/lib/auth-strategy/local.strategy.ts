@@ -1,3 +1,4 @@
+import { UserDto } from '@microservices-realworld-example-app/models';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-local';
@@ -12,7 +13,14 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     super();
   }
 
-  async validate(username: string, password: string): Promise<any> {
+  /**
+   *
+   * @param username string
+   * @param password string
+   *
+   * @returns Promise<UserDto>
+   */
+  async validate(username: string, password: string): Promise<UserDto> {
     const user = await this.authService.validateUser(username, password);
 
     if (!user) {

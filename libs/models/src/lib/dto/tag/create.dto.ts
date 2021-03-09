@@ -1,6 +1,9 @@
 import { IsNotEmpty } from 'class-validator';
 
-export class CreateTagDto {
+/**
+ * Tag create request object
+ */
+ export class CreateTagDto {
   @IsNotEmpty()
   readonly tagName: string;
 }

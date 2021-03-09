@@ -3,7 +3,10 @@ import { Document } from 'mongoose';
 
 export type TagDocument = Tag & Document;
 
-@Schema()
+/**
+ * The Tag mongoose schema
+ */
+ @Schema()
 export class Tag {
   _id: string;
 

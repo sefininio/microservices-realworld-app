@@ -31,17 +31,38 @@ export class ArticleController {
     return this.articleService.findAll(query);
   }
 
+  /**
+   * Returns article by slug
+   *
+   * @param slug the slug
+   * @returns ArticleDto | null
+   */
   @Get('/:slug')
   getArticle(@Param('slug') slug: string): Promise<ArticleDto | null> {
     return this.articleService.findOne(slug);
   }
 
+  /**
+   * Creates a new article
+   *
+   * @param body CreteArticleDto
+   * @param req the request
+   * @returns the created article - ArticleDto | null
+   */
   @UseGuards(JwtAuthGuard)
   @Post('/')
   createArticle(@Body() body: CreateArticleDto, @Req() req: any): Promise<ArticleDto | null> {
     return this.articleService.create(body, req.user);
   }
 
+  /**
+   * Updates an article
+   *
+   * @param req the request
+   * @param body UpdateArticleDto
+   * @param slug the title slug
+   * @returns The updated Article - ArticleDto | null
+   */
   @UseGuards(JwtAuthGuard)
   @Put('/:slug')
   updateArticle(
@@ -52,12 +73,27 @@ export class ArticleController {
     return this.articleService.update(slug, body, req.user);
   }
 
+  /**
+   * Deletes an article
+   *
+   * @param slug the title slug
+   * @param req the request
+   * @returns the deleted article - ArticleDto | null
+   */
   @UseGuards(JwtAuthGuard)
   @Delete('/:slug')
   deleteArticle(@Param('slug') slug: string, @Req() req: any): Promise<ArticleDto> {
     return this.articleService.delete(slug, req.user);
   }
 
+  /**
+   * Creates a comment on an article
+   *
+   * @param req the request
+   * @param body CreateArticleCommentDto
+   * @param slug the title slug
+   * @returns the created comment - CommentDto | null
+   */
   @UseGuards(JwtAuthGuard)
   @Post('/:slug/comments')
   addComment(
@@ -68,11 +104,25 @@ export class ArticleController {
     return this.articleService.addComment(slug, body, req.user);
   }
 
+  /**
+   * Returns all article comments
+   *
+   * @param slug the title slug
+   * @returns the article comments - CommentDto[]
+   */
   @Get('/:slug/comments')
   getComments(@Param('slug') slug: string): Promise<CommentDto[]> {
     return this.articleService.getComments(slug);
   }
 
+  /**
+   * Deletes a comment
+   *
+   * @param req the request
+   * @param slug the title slug
+   * @param id the comment id
+   * @returns the deleted comment - CommentDto | null
+   */
   @UseGuards(JwtAuthGuard)
   @Delete('/:slug/comments/:id')
   deleteComment(
@@ -83,12 +133,24 @@ export class ArticleController {
     return this.articleService.deleteComment(id, req.user);
   }
 
+  /**
+   * Adds a favorite to an article
+   *
+   * @param slug the title slug
+   * @returns the updated article - ArticleDto | null
+   */
   @Post('/:slug/favorite')
   addFavorite(@Param('slug') slug: string): Promise<ArticleDto | null> {
     return this.articleService.modifyFavorite(slug, FavoriteOperation.Increment);
   }
 
-  @Delete('/:slug/favorite')
+  /**
+   * Removes a favorite from an article
+   *
+   * @param slug the title slug
+   * @returns the updated article - ArticleDto | null
+   */
+   @Delete('/:slug/favorite')
   removeFavorite(@Param('slug') slug: string): Promise<ArticleDto | null> {
     return this.articleService.modifyFavorite(slug, FavoriteOperation.Decrement);
   }

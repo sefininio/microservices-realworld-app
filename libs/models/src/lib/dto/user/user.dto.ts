@@ -1,3 +1,6 @@
+/**
+ * User response object
+ */
 export class UserDto {
   readonly _id: string;
   readonly email: string;
@@ -7,8 +10,4 @@ export class UserDto {
   readonly image: string;
   readonly createdAt: Date;
   readonly updatedAt: Date;
-}
-
-export class LoggedInUserDto extends UserDto {
-  readonly token: string;
 }

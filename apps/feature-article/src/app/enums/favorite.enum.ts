@@ -1,4 +1,4 @@
 export enum FavoriteOperation {
   Increment = 'INC',
-  Decrement = 'Dec',
+  Decrement = 'DEC',
 }

@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"momo14@gmail.com\",\n    \"password\": \"momo141415\",\n    \"username\": \"momo14\"    \n}",
+							"raw": "{\n    \"email\": \"momo14@gmail.com\",\n    \"password\": \"momo14\",\n    \"username\": \"momo14\"    \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -293,7 +293,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"nx workshop 2021\",\n    \"body\": \"the post body\",\n    \"description\": \"the post desc\",\n    \"authorId\": \"6040887b743b0be5e65b5b47\",\n    \"tagList\": [\"nx\", \"nest.js\", \"realworld\", \"graphql\", \"micro-services\", \"mongoose\"]\n}",
+							"raw": "{\n    \"title\": \"nx, nest and graphql realworld micro-services workshop 2021\",\n    \"body\": \"the post body\",\n    \"description\": \"the post desc\",\n    \"authorId\": \"6040887b743b0be5e65b5b47\",\n    \"tagList\": [\"nx\", \"nest.js\", \"realworld\", \"graphql\", \"micro-services\", \"mongoose\"]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -329,6 +329,75 @@
 								"api",
 								"articles",
 								"nx-nest-and-graphql-realworld-micro-services-workshop-2021-8n7udp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update article",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vbW8xNEBnbWFpbC5jb20iLCJzdWIiOiI2MDQ2NmQ2MGUwNzE0MzI0NDZhMmJkN2QiLCJpYXQiOjE2MTUyMzYyODUsImV4cCI6MTYxNTIzOTg4NX0.WB18NJ3UkKufOL6bJFY2Y2usz5G5tOq1up2jQ2o0Ag4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"realworld micro-services workshop 2021\",\n    \"body\": \"the post body\",\n    \"description\": \"the post desc\",\n    \"tagList\": [\"nx\", \"nest.js\", \"realworld\", \"graphql\", \"micro-services\", \"mongoose\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3337/api/articles/nx-nest-and-graphql-realworld-micro-services-workshop-2021-bxx9mx",
+							"host": [
+								"localhost"
+							],
+							"port": "3337",
+							"path": [
+								"api",
+								"articles",
+								"nx-nest-and-graphql-realworld-micro-services-workshop-2021-bxx9mx"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"momo14@gmail.com\",\n    \"password\": \"momo14\"    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3334/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3334",
+							"path": [
+								"api",
+								"auth",
+								"login"
 							]
 						}
 					},

@@ -3,6 +3,9 @@ import { Document } from 'mongoose';
 
 export type UserDocument = User & Document;
 
+/**
+ * The User mongoose schema
+ */
 @Schema()
 export class User {
   _id: string;

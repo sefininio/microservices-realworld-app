@@ -1,3 +1,4 @@
+import { UserDto } from '@microservices-realworld-example-app/models';
 import { PromisifyHttpService } from '@microservices-realworld-example-app/shared';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -21,7 +22,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     this.userFeatureBaseUrl = this.configService.get<string>('features.user.baseUrl');
   }
 
-  async validate(payload: any) {
+  /**
+   *
+   * @param payload {username, password}
+   *
+   * @returns Promise<UserDto>
+   */
+  async validate(payload: any): Promise<UserDto> {
     return await this.promisifyHttp.get(`${this.userFeatureBaseUrl}/user/email/${payload.username}`);
   }
 
