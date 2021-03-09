@@ -77,11 +77,13 @@ export class ArticleService {
     const { tagList } = body;
 
     if (tagList && tagList.length) {
+      // publish the tagList in a EvaluateTag message on the Tags queue
       await this.tagsQueue.add(QueueEvents.EvaluateTags, {
         tagList,
       });
     }
 
+    // save the new article
     const article = {
       ...body,
       authorId: user._id,
@@ -94,13 +96,16 @@ export class ArticleService {
     const { tagList } = body;
 
     if (tagList && tagList.length) {
+      // publish the tagList in a EvaluateTag message on the Tags queue
       await this.tagsQueue.add(QueueEvents.EvaluateTags, {
         tagList,
       });
     }
 
+    // only original author is allowed to update
     await this.isUserArticleAuthor(user, slug);
 
+    // save the updated article
     const update = {
       ...body,
       slug: this.stringUtils.slugify(body.title),

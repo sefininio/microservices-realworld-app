@@ -5,6 +5,9 @@ import { Job } from 'bull';
 import { difference } from 'lodash';
 import { TagService } from '../tag.service';
 
+/**
+ * This class handles EvaluateTags messages on the Tags queue.
+ */
 @Processor(Queues.Tags)
 @Injectable()
 export class EvaluateTagsConsumer {
