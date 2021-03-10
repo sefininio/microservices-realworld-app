@@ -77,10 +77,14 @@ export class ArticleService {
     // find all users this user is following
     const profiles: ProfileDto[] = await this.promisifyHttp.get(`${this.profileFeatureBaseUrl}/profiles/${user.username}/follows`);
     const usernames = profiles.map(profile => profile.username);
+
+    // find the respective users
     const users: UserDto[] = await this.promisifyHttp.get(`${this.userFeatureBaseUrl}/user/users/${usernames}`);
     const query = users.map(item => item._id);
     const limit = parseInt(queryParams.limit) || 20;
     const offset = parseInt(queryParams.offset) || 0;
+
+    // find articles these users authored
     const articles = await this.articleModel.find({
       authorId: { $in: query }
     }).sort({createdAt: -1}).skip(offset).limit(limit).exec();

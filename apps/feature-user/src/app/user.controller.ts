@@ -43,7 +43,7 @@ export class UserController {
   }
 
   @Get('/users/:usernames')
-  getUsersByIds(@Param('usernames') usernames: string): Promise<UserDto[]> {
+  getUsersByUsernames(@Param('usernames') usernames: string): Promise<UserDto[]> {
     return this.userService.findAll(usernames);
   }
 
