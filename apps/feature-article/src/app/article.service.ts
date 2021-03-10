@@ -4,6 +4,8 @@ import {
   CreateArticleDto,
   FavoriteOperation,
   FindAllArticleQueryDto,
+  PageDto,
+  ProfileDto,
   QueueEvents,
   Queues,
   UpdateArticleDto,
@@ -24,6 +26,7 @@ import { Comment, CommentDocument } from './schemas/comment.schema';
 export class ArticleService {
 
   userFeatureBaseUrl: string;
+  profileFeatureBaseUrl: string;
 
   constructor(
     @InjectModel(Article.name) private articleModel: Model<ArticleDocument>,
@@ -34,6 +37,7 @@ export class ArticleService {
     private configService: ConfigService,
   ) {
     this.userFeatureBaseUrl = this.configService.get<string>('features.user.baseUrl');
+    this.profileFeatureBaseUrl = this.configService.get<string>('features.profile.baseUrl');
   }
 
   async isUserArticleAuthor(user: UserDto, slug: string) {
@@ -67,6 +71,20 @@ export class ArticleService {
     const offset = parseInt(queryParams.offset) || 0;
 
     return await this.articleModel.find(query).skip(offset).limit(limit).exec();
+  }
+
+  async feed(user: UserDto, queryParams: PageDto): Promise<ArticleDto[]> {
+    // find all users this user is following
+    const profiles: ProfileDto[] = await this.promisifyHttp.get(`${this.profileFeatureBaseUrl}/profiles/${user.username}/follows`);
+    const usernames = profiles.map(profile => profile.username);
+    const users: UserDto[] = await this.promisifyHttp.get(`${this.userFeatureBaseUrl}/user/users/${usernames}`);
+    const query = users.map(item => item._id);
+    const limit = parseInt(queryParams.limit) || 20;
+    const offset = parseInt(queryParams.offset) || 0;
+    const articles = await this.articleModel.find({
+      authorId: { $in: query }
+    }).sort({createdAt: -1}).skip(offset).limit(limit).exec();
+    return articles;
   }
 
   async findOne(slug: string): Promise<ArticleDto | null> {

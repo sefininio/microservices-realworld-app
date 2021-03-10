@@ -9,6 +9,7 @@ import { InjectQueue } from '@nestjs/bull';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Queue } from 'bull';
+import { trim } from 'lodash';
 import { Model } from 'mongoose';
 import { User, UserDocument } from './schemas/user.schema';
 
@@ -20,8 +21,13 @@ export class UserService {
     @InjectQueue(Queues.Users) private usersQueue: Queue,
   ) {}
 
-  async findAll(): Promise<UserDto[]> {
-    return await this.userModel.find().exec();
+  async findAll(usernames?: string): Promise<UserDto[]> {
+    if (usernames) {
+      const usernameArray = usernames.split(',').map(item => trim(item));
+      return await this.userModel.find({username: { $in: usernameArray}}).exec();
+    } else {
+      return await this.userModel.find().exec();
+    }
   }
 
   async findById(id: string): Promise<UserDto | null> {

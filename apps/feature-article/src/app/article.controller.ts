@@ -1,15 +1,27 @@
 import { JwtAuthGuard } from '@microservices-realworld-example-app/auth';
 import {
   ArticleDto,
-  CommentDto, CreateArticleCommentDto,
+  CommentDto,
+  CreateArticleCommentDto,
   CreateArticleDto,
   FavoriteOperation,
   FindAllArticleQueryDto,
-  UpdateArticleDto
+  PageDto,
+  UpdateArticleDto,
 } from '@microservices-realworld-example-app/models';
-import { Body, Controller, Delete, Get, Param, Post, Put, Query, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { ArticleService } from './article.service';
-
 
 @Controller('/articles')
 export class ArticleController {
@@ -32,6 +44,17 @@ export class ArticleController {
   }
 
   /**
+   * will return multiple articles created by followed users, ordered by most recent first.
+   * @param req
+   * @param query
+   */
+  @UseGuards(JwtAuthGuard)
+  @Get('/feed')
+  getUserFeed(@Req() req, @Query() query: PageDto): Promise<ArticleDto[]> {
+    return this.articleService.feed(req.user, query);
+  }
+
+  /**
    * Returns article by slug
    *
    * @param slug the slug
@@ -51,7 +74,10 @@ export class ArticleController {
    */
   @UseGuards(JwtAuthGuard)
   @Post('/')
-  createArticle(@Body() body: CreateArticleDto, @Req() req: any): Promise<ArticleDto | null> {
+  createArticle(
+    @Body() body: CreateArticleDto,
+    @Req() req: any
+  ): Promise<ArticleDto | null> {
     return this.articleService.create(body, req.user);
   }
 
@@ -82,7 +108,10 @@ export class ArticleController {
    */
   @UseGuards(JwtAuthGuard)
   @Delete('/:slug')
-  deleteArticle(@Param('slug') slug: string, @Req() req: any): Promise<ArticleDto> {
+  deleteArticle(
+    @Param('slug') slug: string,
+    @Req() req: any
+  ): Promise<ArticleDto> {
     return this.articleService.delete(slug, req.user);
   }
 
@@ -139,9 +168,13 @@ export class ArticleController {
    * @param slug the title slug
    * @returns the updated article - ArticleDto | null
    */
+  @UseGuards(JwtAuthGuard)
   @Post('/:slug/favorite')
   addFavorite(@Param('slug') slug: string): Promise<ArticleDto | null> {
-    return this.articleService.modifyFavorite(slug, FavoriteOperation.Increment);
+    return this.articleService.modifyFavorite(
+      slug,
+      FavoriteOperation.Increment
+    );
   }
 
   /**
@@ -150,9 +183,13 @@ export class ArticleController {
    * @param slug the title slug
    * @returns the updated article - ArticleDto | null
    */
-   @Delete('/:slug/favorite')
+  @UseGuards(JwtAuthGuard)
+  @Delete('/:slug/favorite')
   removeFavorite(@Param('slug') slug: string): Promise<ArticleDto | null> {
-    return this.articleService.modifyFavorite(slug, FavoriteOperation.Decrement);
+    return this.articleService.modifyFavorite(
+      slug,
+      FavoriteOperation.Decrement
+    );
   }
 
 }

@@ -262,7 +262,120 @@
 		},
 		{
 			"name": "profile",
-			"item": []
+			"item": [
+				{
+					"name": "follow user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vbW8xNEBnbWFpbC5jb20iLCJzdWIiOiI2MDQ2NmQ2MGUwNzE0MzI0NDZhMmJkN2QiLCJpYXQiOjE2MTU0MDM3NjIsImV4cCI6MTYxNTQwNzM2Mn0.lnnFtI2OdZwBgETBKbR8ZIu98Sm6visplPZSAHl8iK0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3336/api/profiles/momo14/follow",
+							"host": [
+								"localhost"
+							],
+							"port": "3336",
+							"path": [
+								"api",
+								"profiles",
+								"momo14",
+								"follow"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vbW8xNEBnbWFpbC5jb20iLCJzdWIiOiI2MDQ2NmQ2MGUwNzE0MzI0NDZhMmJkN2QiLCJpYXQiOjE2MTU0MDM3NjIsImV4cCI6MTYxNTQwNzM2Mn0.lnnFtI2OdZwBgETBKbR8ZIu98Sm6visplPZSAHl8iK0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3336/api/profiles/momo18",
+							"host": [
+								"localhost"
+							],
+							"port": "3336",
+							"path": [
+								"api",
+								"profiles",
+								"momo18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get profiles user follows",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vbW8xNEBnbWFpbC5jb20iLCJzdWIiOiI2MDQ2NmQ2MGUwNzE0MzI0NDZhMmJkN2QiLCJpYXQiOjE2MTU0MDM3NjIsImV4cCI6MTYxNTQwNzM2Mn0.lnnFtI2OdZwBgETBKbR8ZIu98Sm6visplPZSAHl8iK0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3336/api/profiles/follows",
+							"host": [
+								"localhost"
+							],
+							"port": "3336",
+							"path": [
+								"api",
+								"profiles",
+								"follows"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "article",
@@ -364,6 +477,26 @@
 								"api",
 								"articles",
 								"nx-nest-and-graphql-realworld-micro-services-workshop-2021-bxx9mx"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get feed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3337/api/articles/feed",
+							"host": [
+								"localhost"
+							],
+							"port": "3337",
+							"path": [
+								"api",
+								"articles",
+								"feed"
 							]
 						}
 					},

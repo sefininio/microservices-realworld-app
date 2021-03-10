@@ -26,7 +26,10 @@ export class ProfileService {
     const following: boolean = profile.followers.includes(user.username);
 
     return {
-      ...profile,
+      _id: profile._id,
+      username: profile.username,
+      bio: profile.bio,
+      image: profile.image,
       following,
     };
   }
@@ -51,7 +54,7 @@ export class ProfileService {
     const profile: Profile = await this.profileModel.findOne({username}).exec();
 
     const update = {
-      ...profile,
+      followers: profile.followers,
     }
     switch (op) {
       case FollowOperation.Follow:
@@ -66,5 +69,8 @@ export class ProfileService {
     return await this.profileModel.findOneAndUpdate({username}, update, {new: true, useFindAndModify: false});
   }
 
+  async getProfilesFollowedByUser(username: string): Promise<ProfileDto[]> {
+    return await this.profileModel.find({followers: username}).exec();
+  }
 
 }
