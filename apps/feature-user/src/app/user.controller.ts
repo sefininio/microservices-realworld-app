@@ -2,11 +2,19 @@ import { JwtAuthGuard } from '@microservices-realworld-example-app/auth';
 import {
   CreateUserDto,
   UpdateUserDto,
-  UserDto
+  UserDto,
 } from '@microservices-realworld-example-app/models';
-import { Body, Controller, Get, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { UserService } from './user.service';
-
 
 @Controller('/user')
 export class UserController {
@@ -19,7 +27,7 @@ export class UserController {
    * @returns user UserDto
    */
   @UseGuards(JwtAuthGuard)
-  @Get('/me')
+  @Get('/')
   getMe(@Req() req): Promise<UserDto> {
     return req.user;
   }
@@ -53,7 +61,7 @@ export class UserController {
    */
   @Get('/username/:username')
   getUserByUsername(@Param('username') username: string): Promise<UserDto | null> {
-    return this.userService.findOne({username});
+    return this.userService.findOne({ username });
   }
 
   /**
@@ -62,9 +70,9 @@ export class UserController {
    * @param email email route param
    * @returns UserDto | null
    */
-   @Get('/email/:email')
+  @Get('/email/:email')
   getUserByEmail(@Param('email') email: string): Promise<UserDto | null> {
-    return this.userService.findOne({email});
+    return this.userService.findOne({ email });
   }
 
   /**
@@ -89,5 +97,4 @@ export class UserController {
   updateUser(@Body() body: UpdateUserDto): Promise<UserDto | null> {
     return this.userService.update(body);
   }
-
 }

@@ -149,7 +149,7 @@ export class ArticleService {
   }
 
   async modifyFavorite(slug: string, op: FavoriteOperation): Promise<ArticleDto | null> {
-    const article = await this.articleModel.findOne({slug}).exec();
+    const article: Article = await this.articleModel.findOne({slug}).exec();
     if (article.favoritesCount === 0 && op === FavoriteOperation.Decrement) {
       return article;
     }
