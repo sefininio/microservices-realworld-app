@@ -51,4 +51,9 @@ One flow that uses this is:
   - `feature-article` service publishes a message with the `tagList` to the queue and saves the new article.
   - `feature-tag` implements a consumer that processes the message and creates the new tags in DB.
 
+Another exaple is:
+  - User is created or updated
+  - `feature-user` service publishes `userCreated` or `userUpdated` event on the `Users` queue.
+  - `feature-profile` services implements a `UserConsumer` that processes those messages and creates/updates the relevant profile in DB.
+
 See Real World App [spec here](https://github.com/gothinkster/realworld/tree/master/api).
