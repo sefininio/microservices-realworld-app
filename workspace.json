@@ -161,7 +161,9 @@
         "serve": {
           "executor": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "feature-profile:build"
+            "buildTarget": "feature-profile:build",
+            "inspect": true,
+            "port": 57721
           }
         },
         "lint": {
