@@ -42,6 +42,11 @@ export class UserController {
     return this.userService.findAll();
   }
 
+  @Get('/users/:usernames')
+  getUsersByUsernames(@Param('usernames') usernames: string): Promise<UserDto[]> {
+    return this.userService.findAll(usernames);
+  }
+
   /**
    * Returns user by id
    *
