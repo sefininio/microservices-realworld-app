@@ -1,4 +1,5 @@
 import { UserDto } from '@microservices-realworld-example-app/models';
+import { PromisifyHttpService } from '@microservices-realworld-example-app/shared';
 import { HttpService } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Args, Context, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
@@ -14,7 +15,7 @@ export class UserResolver {
 
   constructor(
     private configService: ConfigService,
-    private httpService: HttpService,
+    private promisifyHttp: PromisifyHttpService,
   ) {
     this.userFeatureBaseUrl = this.configService.get<string>('features.user.baseUrl');
     this.articleFeatureBaseUrl = this.configService.get<string>('features.article.baseUrl');
@@ -41,9 +42,7 @@ export class UserResolver {
       url = `${this.userFeatureBaseUrl}/user/email/${email}`;
     }
 
-    const user: UserDto = await this.httpService.get(url)
-      .toPromise()
-      .then(res => res.data);
+    const user: UserDto = await this.promisifyHttp.get(url);
 
     return user;
   }
@@ -60,10 +59,7 @@ export class UserResolver {
     const { username } = user;
     const url = `${this.articleFeatureBaseUrl}/articles?author=${username}`;
 
-    return await this.httpService.get(url)
-      .toPromise()
-      .then(res => res.data)
-      .catch(err => console.log(err));
+    return await this.promisifyHttp.get(url);
   }
 
   @ResolveField(returns => [Article], {name: 'feed'})
@@ -71,18 +67,13 @@ export class UserResolver {
     @Context() ctx: ExtendedGqlExecutionContext,
     @Parent() user: User,
   ) {
-    const headers = {
-      ...ctx.req.headers,
-      "Authorization": ctx.req.headers.authorization,
-    };
+    const headers = this.promisifyHttp.getHeaders({
+      "Authorization": `Bearer ${ctx.req.headers.token}`,
+    });
 
     const url = `${this.articleFeatureBaseUrl}/articles/feed`;
 
-    return await this.httpService.get(url, {headers})
-      .toPromise()
-      .then(res => res.data)
-      .catch(err => console.log(err));
-
+    return await this.promisifyHttp.get(url, {headers});
   }
 
 }

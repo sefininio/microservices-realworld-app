@@ -14,7 +14,7 @@ import { ExtendedGqlExecutionContext } from './extended-gql-context';
     SharedModule,
     AuthModule,
     GraphQLModule.forRoot({
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      autoSchemaFile: join(process.cwd(), 'apps/realworld-example-app/schema.gql'),
       sortSchema: true,
       context: ({ req, res, payload, connection }): ExtendedGqlExecutionContext => ({
         req,
