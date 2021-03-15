@@ -1,0 +1,39 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Article {
+  _id: String!
+  authorId: String!
+  body: String!
+  createdAt: String!
+  deletedAt: String
+  description: String!
+  favoritesCount: Int!
+  slug: String!
+  tagList: [Tag]!
+  title: String!
+  updatedAt: String!
+}
+
+type Query {
+  user(email: String, id: String, username: String): User!
+}
+
+type Tag {
+  id: String!
+  tagName: String!
+}
+
+type User {
+  _id: String!
+  articles: [Article!]!
+  bio: String
+  createdAt: String!
+  email: String!
+  feed: [Article!]!
+  image: String
+  password: String!
+  updatedAt: String!
+  username: String!
+}

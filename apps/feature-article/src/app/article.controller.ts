@@ -38,7 +38,7 @@ export class ArticleController {
    *  Offset/skip number of articles (default is 0): ?offset=0
    * Authentication optional, will return multiple articles, ordered by most recent first
    */
-  @Get()
+  @Get('/')
   listArticles(@Query() query: FindAllArticleQueryDto): Promise<ArticleDto[]> {
     return this.articleService.findAll(query);
   }
@@ -50,8 +50,13 @@ export class ArticleController {
    */
   @UseGuards(JwtAuthGuard)
   @Get('/feed')
-  getUserFeed(@Req() req, @Query() query: PageDto): Promise<ArticleDto[]> {
-    return this.articleService.feed(req.user, query);
+  getUserFeed(@Req() req, @Query() query?: PageDto): Promise<ArticleDto[]> {
+    try {
+      return this.articleService.feed(req.user, query);
+    } catch(err) {
+      console.log(err);
+
+    }
   }
 
   /**

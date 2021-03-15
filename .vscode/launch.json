@@ -24,5 +24,11 @@
       "request": "attach",
       "port": 57721
     },
+    {
+      "name": "Debug gateway",
+      "type": "node",
+      "request": "attach",
+      "port": 57821
+    },
   ]
 }

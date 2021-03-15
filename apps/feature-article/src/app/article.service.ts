@@ -73,7 +73,7 @@ export class ArticleService {
     return await this.articleModel.find(query).skip(offset).limit(limit).exec();
   }
 
-  async feed(user: UserDto, queryParams: PageDto): Promise<ArticleDto[]> {
+  async feed(user: UserDto, queryParams?: PageDto): Promise<ArticleDto[]> {
     // find all users this user is following
     const profiles: ProfileDto[] = await this.promisifyHttp.get(`${this.profileFeatureBaseUrl}/profiles/${user.username}/follows`);
     const usernames = profiles.map(profile => profile.username);
@@ -81,8 +81,8 @@ export class ArticleService {
     // find the respective users
     const users: UserDto[] = await this.promisifyHttp.get(`${this.userFeatureBaseUrl}/user/users/${usernames}`);
     const query = users.map(item => item._id);
-    const limit = parseInt(queryParams.limit) || 20;
-    const offset = parseInt(queryParams.offset) || 0;
+    const limit = queryParams?.limit && parseInt(queryParams.limit) || 20;
+    const offset = queryParams?.offset && parseInt(queryParams.offset) || 0;
 
     // find articles these users authored
     const articles = await this.articleModel.find({
