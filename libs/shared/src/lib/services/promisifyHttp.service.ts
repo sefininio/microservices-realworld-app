@@ -11,15 +11,6 @@ export class PromisifyHttpService {
     private httpService: HttpService,
   ){}
 
-  getHeaders(config:any = {}) {
-    return {
-      "Accept": '*/*',
-      "Accept-Encoding": 'gzip, deflate, br',
-      "Connection": "keep-alive",
-      ...config,
-    }
-  }
-
   get(url: string, config: AxiosRequestConfig = null): Promise<any> {
     return this.httpService.get(url, config)
       .toPromise()

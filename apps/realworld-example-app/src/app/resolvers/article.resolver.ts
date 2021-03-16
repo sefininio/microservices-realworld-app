@@ -1,21 +1,16 @@
 // import { HttpService } from '@nestjs/common';
 // import { ConfigService } from '@nestjs/config';
-// import { Query } from '@nestjs/graphql';
-// import { Resolver } from 'node:dns';
+// import { Query, Resolver } from '@nestjs/graphql';
 // import { Article } from '../models/article.model';
+// import { ArticleService } from '../services/article.service';
 
 
 // @Resolver(of => Article)
 // export class ArticleResolver {
 
-//   articleFeatureBaseUrl: string;
-
 //   constructor(
-//     private configService: ConfigService,
-//     private httpService: HttpService,
-//   ) {
-//     this.articleFeatureBaseUrl = this.configService.get<string>('features.article.baseUrl');
-//   }
+//     private articleService: ArticleService,
+//   ) {}
 
 //   @Query(returns => [Article], { name: 'articles' })
 //   async getArticles() {

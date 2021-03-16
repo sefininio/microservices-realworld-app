@@ -7,10 +7,18 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserResolver } from './resolvers/user.resolver';
 import { ExtendedGqlExecutionContext } from './extended-gql-context';
+import { UserService } from './services/user.service';
+import { ArticleService } from './services/article.service';
 
 @Module({
   imports: [
-    HttpModule,
+    HttpModule.register({
+      headers: {
+        "Accept": '*/*',
+        "Accept-Encoding": 'gzip, deflate, br',
+        "Connection": "keep-alive",
+      }
+    }),
     SharedModule,
     AuthModule,
     GraphQLModule.forRoot({
@@ -21,6 +29,7 @@ import { ExtendedGqlExecutionContext } from './extended-gql-context';
         res,
         payload,
         connection,
+        token: req.headers.token,
       }),
     }),
   ],
@@ -28,6 +37,8 @@ import { ExtendedGqlExecutionContext } from './extended-gql-context';
   providers: [
     AppService,
     UserResolver,
+    UserService,
+    ArticleService,
   ],
 })
 export class AppModule {}

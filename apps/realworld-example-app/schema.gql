@@ -11,18 +11,13 @@ type Article {
   description: String!
   favoritesCount: Int!
   slug: String!
-  tagList: [Tag]!
+  tagList: [String]!
   title: String!
   updatedAt: String!
 }
 
 type Query {
   user(email: String, id: String, username: String): User!
-}
-
-type Tag {
-  id: String!
-  tagName: String!
 }
 
 type User {

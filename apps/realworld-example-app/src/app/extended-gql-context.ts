@@ -4,4 +4,5 @@ export class ExtendedGqlExecutionContext {
   res: any;
   connection: any;
   payload: any;
+  token?: string;
 }

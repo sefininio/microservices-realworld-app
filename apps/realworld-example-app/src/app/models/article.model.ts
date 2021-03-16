@@ -1,6 +1,4 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { Comment } from './comment.model';
-import { Tag } from './tag.model';
 
 @ObjectType()
 export class Article {
@@ -22,8 +20,8 @@ export class Article {
   @Field()
   body: string;
 
-  @Field(type => [Tag], { nullable: 'items' })
-  tagList: Tag[];
+  @Field(type => [String], { nullable: 'items' })
+  tagList: string[];
 
   @Field(type => Int)
   favoritesCount: number;
