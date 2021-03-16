@@ -1,4 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Comment } from './comment.model';
 import { User } from './user.model';
 
 @ObjectType()
@@ -39,7 +40,7 @@ export class Article {
   @Field({nullable: true})
   deletedAt: string;
 
-  // @Field(type => [Comment])
-  // comments: Comment[];
+  @Field(type => [Comment], { nullable: 'items' })
+  comments: Comment[];
 
 }

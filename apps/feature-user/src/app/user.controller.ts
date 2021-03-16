@@ -47,6 +47,11 @@ export class UserController {
     return this.userService.findAll(usernames);
   }
 
+  @Get('/users/ids/:ids')
+  getUsersByIds(@Param('ids') ids: string) {
+    return this.userService.findByIds(ids);
+  }
+
   /**
    * Returns user by id
    *

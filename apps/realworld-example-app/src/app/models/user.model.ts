@@ -32,4 +32,8 @@ export class User {
 
   @Field(type => [Article], { nullable: 'itemsAndList' })
   feed: Article[];
+
+  // @Field(type => Profile)
+  // profile: Profile;
+
 }

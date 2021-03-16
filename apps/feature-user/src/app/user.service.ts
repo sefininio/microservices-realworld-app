@@ -30,6 +30,16 @@ export class UserService {
     }
   }
 
+  async findByIds(ids: string) {
+    const idArray = ids.split(',').map(item => trim(item));
+    const users =  await this.userModel.find({_id: { $in: idArray}}).lean().exec();
+    const map = idArray.reduce((acc, id) => {
+      acc[id] = users.find(user => user._id.equals(id));
+      return acc;
+    }, {});
+    return map;
+  }
+
   async findById(id: string): Promise<UserDto | null> {
     return await this.userModel.findById({'_id': id}).exec();
   }

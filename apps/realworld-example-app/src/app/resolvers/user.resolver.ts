@@ -49,4 +49,16 @@ export class UserResolver {
     return this.articleService.getUserFeed(authHeader);
   }
 
+  // @ResolveField(returns => Profile, {name: 'profile'})
+  // async getProfile(
+  //   @Context() ctx: ExtendedGqlExecutionContext,
+  //   @Parent() user: User,
+  // ) {
+  //   const authHeader = {
+  //     "Authorization": `Bearer ${ctx.token}`,
+  //   };
+
+  //   return this.articleService.getUserFeed(authHeader);
+  // }
+
 }

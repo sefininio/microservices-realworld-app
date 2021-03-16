@@ -7,6 +7,7 @@ type Article {
   author: User!
   authorId: String!
   body: String!
+  comments: [Comment!]!
   createdAt: String!
   deletedAt: String
   description: String!
@@ -15,6 +16,15 @@ type Article {
   tagList: [String]!
   title: String!
   updatedAt: String!
+}
+
+type Comment {
+  _id: String!
+  author: User!
+  authorId: String!
+  body: String!
+  createdAt: String!
+  deletedAt: String
 }
 
 type Query {
