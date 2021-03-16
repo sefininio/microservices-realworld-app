@@ -9,6 +9,7 @@ import { UserResolver } from './resolvers/user.resolver';
 import { ExtendedGqlExecutionContext } from './extended-gql-context';
 import { UserService } from './services/user.service';
 import { ArticleService } from './services/article.service';
+import { ArticleResolver } from './resolvers/article.resolver';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { ArticleService } from './services/article.service';
     AppService,
     UserResolver,
     UserService,
+    ArticleResolver,
     ArticleService,
   ],
 })

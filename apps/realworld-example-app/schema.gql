@@ -4,6 +4,7 @@
 
 type Article {
   _id: String!
+  author: User!
   authorId: String!
   body: String!
   createdAt: String!
@@ -17,6 +18,7 @@ type Article {
 }
 
 type Query {
+  articles(slug: String): [Article]!
   user(email: String, id: String, username: String): User!
 }
 

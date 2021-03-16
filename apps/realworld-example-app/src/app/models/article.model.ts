@@ -1,4 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { User } from './user.model';
 
 @ObjectType()
 export class Article {
@@ -10,6 +11,9 @@ export class Article {
 
   @Field()
   authorId: string;
+
+  @Field()
+  author: User;
 
   @Field()
   title: string;

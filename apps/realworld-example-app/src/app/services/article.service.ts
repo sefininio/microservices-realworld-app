@@ -15,6 +15,17 @@ export class ArticleService {
     this.articleFeatureBaseUrl = this.configService.get<string>('features.article.baseUrl');
   }
 
+  async getArticle(slug: string): Promise<ArticleDto[]> {
+    const url = `${this.articleFeatureBaseUrl}/articles/${slug}`;
+    const article: ArticleDto = await this.promisifyHttp.get(url);
+    return [article];
+  }
+
+  async getAllArticles(): Promise<ArticleDto[]> {
+    const url = `${this.articleFeatureBaseUrl}/articles`;
+    return this.promisifyHttp.get(url);
+  }
+
   async getUserArticles(username: string): Promise<ArticleDto[]> {
     const url = `${this.articleFeatureBaseUrl}/articles?author=${username}`;
 
