@@ -27,8 +27,17 @@ type Comment {
   deletedAt: String
 }
 
+type Profile {
+  _id: String!
+  bio: String
+  following: Boolean!
+  image: String
+  username: String!
+}
+
 type Query {
   articles(slug: String): [Article]!
+  profile(username: String!): Profile!
   user(email: String, id: String, username: String): User!
 }
 

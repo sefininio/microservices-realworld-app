@@ -4,7 +4,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class Profile {
   @Field()
-  id: string;
+  _id: string;
 
   @Field()
   username: string;

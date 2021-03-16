@@ -10,6 +10,8 @@ import { ExtendedGqlExecutionContext } from './extended-gql-context';
 import { UserService } from './services/user.service';
 import { ArticleService } from './services/article.service';
 import { ArticleResolver } from './resolvers/article.resolver';
+import { ProfileService } from './services/profile.service';
+import { ProfileResolver } from './resolvers/profile.resolver';
 
 @Module({
   imports: [
@@ -41,6 +43,8 @@ import { ArticleResolver } from './resolvers/article.resolver';
     UserService,
     ArticleResolver,
     ArticleService,
+    ProfileResolver,
+    ProfileService,
   ],
 })
 export class AppModule {}

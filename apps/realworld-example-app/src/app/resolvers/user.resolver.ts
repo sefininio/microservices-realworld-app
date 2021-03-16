@@ -3,6 +3,7 @@ import { ExtendedGqlExecutionContext } from '../extended-gql-context';
 import { Article } from '../models/article.model';
 import { User } from '../models/user.model';
 import { ArticleService } from '../services/article.service';
+import { ProfileService } from '../services/profile.service';
 import { UserService } from '../services/user.service';
 
 @Resolver(of => User)
@@ -11,6 +12,7 @@ export class UserResolver {
   constructor(
     private userService: UserService,
     private articleService: ArticleService,
+    private profileService: ProfileService,
   ) {}
 
   @Query(returns => User, { name: 'user' })
@@ -48,17 +50,5 @@ export class UserResolver {
 
     return this.articleService.getUserFeed(authHeader);
   }
-
-  // @ResolveField(returns => Profile, {name: 'profile'})
-  // async getProfile(
-  //   @Context() ctx: ExtendedGqlExecutionContext,
-  //   @Parent() user: User,
-  // ) {
-  //   const authHeader = {
-  //     "Authorization": `Bearer ${ctx.token}`,
-  //   };
-
-  //   return this.articleService.getUserFeed(authHeader);
-  // }
 
 }
