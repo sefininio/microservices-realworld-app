@@ -38,15 +38,16 @@ export class ProfileService {
     return await this.profileModel.findOne({username}).exec();
   }
 
-  async create(profile: CreateProfileDto): Promise<ProfileDto | null> {
-    return await this.profileModel.create(profile);
-  }
-
-  async update(profile: UpdateProfileDto): Promise<ProfileDto | null> {
+  async upsert(user: UserDto): Promise<ProfileDto | null> {
+    const update = {
+      username: user.username,
+      bio: user.bio,
+      image: user.image,
+    }
     return await this.profileModel.findOneAndUpdate(
-      {username: profile.username},
-      profile,
-      {new: true, useFindAndModify: false}
+      {username: user.username},
+      update,
+      {new: true, useFindAndModify: false, upsert: true}
     );
   }
 

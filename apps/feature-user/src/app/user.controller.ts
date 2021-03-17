@@ -93,7 +93,7 @@ export class UserController {
    */
   @Post('/')
   createUser(@Body() body: CreateUserDto): Promise<UserDto | null> {
-    return this.userService.create(body);
+    return this.userService.upsert(body);
   }
 
   /**
@@ -105,6 +105,6 @@ export class UserController {
   @UseGuards(JwtAuthGuard)
   @Put('/')
   updateUser(@Body() body: UpdateUserDto): Promise<UserDto | null> {
-    return this.userService.update(body);
+    return this.userService.upsert(body);
   }
 }
