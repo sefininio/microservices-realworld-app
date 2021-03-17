@@ -27,6 +27,11 @@ type Comment {
   deletedAt: String
 }
 
+type Mutation {
+  createUser(createUserData: UserCreateInput!): User!
+  updateUser(updateUserData: UserUpdateInput!): User!
+}
+
 type Profile {
   _id: String!
   bio: String
@@ -45,11 +50,24 @@ type User {
   _id: String!
   articles: [Article!]!
   bio: String
-  createdAt: String!
   email: String!
   feed: [Article!]!
   image: String
   password: String!
   updatedAt: String!
+  username: String!
+}
+
+input UserCreateInput {
+  email: String!
+  password: String!
+  username: String!
+}
+
+input UserUpdateInput {
+  bio: String
+  email: String!
+  image: String
+  password: String
   username: String!
 }

@@ -22,9 +22,6 @@ export class User {
   image?: string;
 
   @Field()
-  createdAt: string;
-
-  @Field()
   updatedAt: string;
 
   @Field(type => [Article], { nullable: 'itemsAndList' })

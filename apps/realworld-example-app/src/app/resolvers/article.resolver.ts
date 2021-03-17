@@ -1,5 +1,4 @@
-import { Args, Context, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
-import { ExtendedGqlExecutionContext } from '../extended-gql-context';
+import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { Article } from '../models/article.model';
 import { Comment } from '../models/comment.model';
 import { User } from '../models/user.model';
@@ -29,7 +28,6 @@ export class ArticleResolver {
 
   @ResolveField(returns => User, { name: 'author' })
   async getUser(
-    @Context() ctx: ExtendedGqlExecutionContext,
     @Parent() article: Article
   ) {
     const { authorId } = article;
@@ -38,7 +36,6 @@ export class ArticleResolver {
 
   @ResolveField(returns => [Comment], { name: 'comments'})
   async getComments(
-    @Context() ctx: ExtendedGqlExecutionContext,
     @Parent() article: Article
   ) {
     const { slug } = article;

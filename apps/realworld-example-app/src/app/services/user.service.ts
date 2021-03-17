@@ -2,6 +2,8 @@ import { UserDto } from '@microservices-realworld-example-app/models';
 import { PromisifyHttpService } from '@microservices-realworld-example-app/shared';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { UserCreateInput } from '../models/userCreate.input';
+import { UserUpdateInput } from '../models/userUpdate.input';
 
 @Injectable()
 export class UserService {
@@ -31,6 +33,16 @@ export class UserService {
     }
 
     return this.promisifyHttp.get(url);
+  }
+
+  async create(input: UserCreateInput): Promise<UserDto> {
+    const url = `${this.userFeatureBaseUrl}/user`;
+    return this.promisifyHttp.post(url, input);
+  }
+
+  async update(input: UserUpdateInput, authHeader: any): Promise<UserDto> {
+    const url = `${this.userFeatureBaseUrl}/user`;
+    return this.promisifyHttp.put(url, input, {headers: authHeader});
   }
 
 }

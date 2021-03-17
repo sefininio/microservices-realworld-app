@@ -53,6 +53,7 @@ export class UserService {
       ...body,
       updatedAt: new Date(),
     };
+
     const user: User = await this.userModel.findOneAndUpdate(
       {'email': body.email},
       update,

@@ -1,7 +1,9 @@
-import { Args, Context, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { ExtendedGqlExecutionContext } from '../extended-gql-context';
 import { Article } from '../models/article.model';
 import { User } from '../models/user.model';
+import { UserCreateInput } from '../models/userCreate.input';
+import { UserUpdateInput } from '../models/userUpdate.input';
 import { ArticleService } from '../services/article.service';
 import { ProfileService } from '../services/profile.service';
 import { UserService } from '../services/user.service';
@@ -23,6 +25,26 @@ export class UserResolver {
   ) {
 
     return this.userService.getUser(id, username, email);
+  }
+
+  @Mutation(returns => User)
+  async createUser (
+    @Args('createUserData') createUserData: UserCreateInput,
+  ) {
+
+    return this.userService.create(createUserData);
+  }
+
+  @Mutation(returns => User)
+  async updateUser (
+    @Context() ctx: ExtendedGqlExecutionContext,
+    @Args('updateUserData') updateUserData: UserUpdateInput,
+  ) {
+    const authHeader = {
+      "Authorization": `Bearer ${ctx.token}`,
+    };
+
+    return this.userService.update(updateUserData, authHeader);
   }
 
   /**
