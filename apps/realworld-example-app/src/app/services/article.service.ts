@@ -2,7 +2,11 @@ import { ArticleDto } from '@microservices-realworld-example-app/models';
 import { PromisifyHttpService } from '@microservices-realworld-example-app/shared';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { ArticleCreateInput } from '../models/articleCreate.input';
+import { ArticleUpdateInput } from '../models/articleUpdate.input';
 import { Comment } from '../models/comment.model';
+import { CommentCreateInput } from '../models/commentCreate.input';
+import { CommentDeleteInput } from '../models/commentDelete.input';
 
 @Injectable()
 export class ArticleService {
@@ -55,6 +59,41 @@ export class ArticleService {
 
     return populatedComments;
 
+  }
+
+  async create(input: ArticleCreateInput, authHeader: any): Promise<ArticleDto> {
+    const url = `${this.articleFeatureBaseUrl}/articles`;
+    return this.promisifyHttp.post(url, input, {headers: authHeader});
+  }
+
+  async update(input: ArticleUpdateInput, authHeader: any): Promise<ArticleDto> {
+    const url = `${this.articleFeatureBaseUrl}/articles/${input.slug}`;
+    return this.promisifyHttp.put(url, input, {headers: authHeader});
+  }
+
+  async delete(slug: string, authHeader: any): Promise<ArticleDto> {
+    const url = `${this.articleFeatureBaseUrl}/articles/${slug}`;
+    return this.promisifyHttp.delete(url, {headers: authHeader});
+  }
+
+  async createComment(input: CommentCreateInput, authHeader: any): Promise<Comment> {
+    const url = `${this.articleFeatureBaseUrl}/articles/${input.slug}/comments`;
+    return this.promisifyHttp.post(url, input, {headers: authHeader});
+  }
+
+  async deleteComment(input: CommentDeleteInput, authHeader: any): Promise<Comment> {
+    const url = `${this.articleFeatureBaseUrl}/articles/${input.slug}/comments/${input.id}`;
+    return this.promisifyHttp.delete(url, {headers: authHeader});
+  }
+
+  async addFavorite(slug: string, authHeader: any): Promise<ArticleDto> {
+    const url = `${this.articleFeatureBaseUrl}/articles/${slug}/favorite`;
+    return this.promisifyHttp.post(url, {}, {headers: authHeader});
+  }
+
+  async removeFavorite(slug: string, authHeader: any): Promise<ArticleDto> {
+    const url = `${this.articleFeatureBaseUrl}/articles/${slug}/favorite`;
+    return this.promisifyHttp.delete(url, {headers: authHeader});
   }
 
 }
