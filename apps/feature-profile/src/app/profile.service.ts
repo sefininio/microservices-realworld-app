@@ -67,7 +67,17 @@ export class ProfileService {
         break;
     }
 
-    return await this.profileModel.findOneAndUpdate({username}, update, {new: true, useFindAndModify: false});
+    const updated = await this.profileModel.findOneAndUpdate({username}, update, {new: true, useFindAndModify: false});
+    const following: boolean = updated.followers.includes(user.username);
+
+    return {
+      _id: updated._id,
+      username: updated.username,
+      bio: updated.bio,
+      image: updated.image,
+      following,
+    };
+
   }
 
   async getProfilesFollowedByUser(username: string): Promise<ProfileDto[]> {
