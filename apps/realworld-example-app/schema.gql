@@ -52,6 +52,11 @@ input CommentDeleteInput {
   slug: String!
 }
 
+input LoginInput {
+  password: String!
+  username: String!
+}
+
 type Mutation {
   addFavorite(slug: String!): Article!
   addFollow(username: String!): Profile!
@@ -60,6 +65,7 @@ type Mutation {
   createUser(createUserData: UserCreateInput!): User!
   deleteArticle(slug: String!): Article!
   deleteComment(deleteCommentData: CommentDeleteInput!): Comment!
+  login(loginData: LoginInput!): Token!
   removeFavorite(slug: String!): Article!
   removeFollow(username: String!): Profile!
   updateArticle(updateArticleData: ArticleUpdateInput!): Article!
@@ -78,6 +84,10 @@ type Query {
   articles(slug: String): [Article]!
   profile(username: String!): Profile!
   user(email: String, id: String, username: String): User!
+}
+
+type Token {
+  access_token: String!
 }
 
 type User {

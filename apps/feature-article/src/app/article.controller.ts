@@ -51,12 +51,7 @@ export class ArticleController {
   @UseGuards(JwtAuthGuard)
   @Get('/feed')
   getUserFeed(@Req() req, @Query() query?: PageDto): Promise<ArticleDto[]> {
-    try {
-      return this.articleService.feed(req.user, query);
-    } catch(err) {
-      console.log(err);
-
-    }
+    return this.articleService.feed(req.user, query);
   }
 
   /**

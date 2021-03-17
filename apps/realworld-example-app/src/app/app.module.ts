@@ -13,6 +13,7 @@ import { ArticleResolver } from './resolvers/article.resolver';
 import { ProfileService } from './services/profile.service';
 import { ProfileResolver } from './resolvers/profile.resolver';
 import { CommentResolver } from './resolvers/comment.resolver';
+import { LoginResolver } from './resolvers/login.resolver';
 
 @Module({
   imports: [
@@ -47,6 +48,7 @@ import { CommentResolver } from './resolvers/comment.resolver';
     ProfileResolver,
     ProfileService,
     CommentResolver,
+    LoginResolver,
   ],
 })
 export class AppModule {}
