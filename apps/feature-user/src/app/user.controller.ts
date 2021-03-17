@@ -47,6 +47,11 @@ export class UserController {
     return this.userService.findAll(usernames);
   }
 
+  @Get('/users/ids/:ids')
+  getUsersByIds(@Param('ids') ids: string) {
+    return this.userService.findByIds(ids);
+  }
+
   /**
    * Returns user by id
    *
@@ -88,7 +93,7 @@ export class UserController {
    */
   @Post('/')
   createUser(@Body() body: CreateUserDto): Promise<UserDto | null> {
-    return this.userService.create(body);
+    return this.userService.upsert(body);
   }
 
   /**
@@ -100,6 +105,6 @@ export class UserController {
   @UseGuards(JwtAuthGuard)
   @Put('/')
   updateUser(@Body() body: UpdateUserDto): Promise<UserDto | null> {
-    return this.userService.update(body);
+    return this.userService.upsert(body);
   }
 }

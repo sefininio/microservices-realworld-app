@@ -30,6 +30,16 @@ export class UserService {
     }
   }
 
+  async findByIds(ids: string) {
+    const idArray = ids.split(',').map(item => trim(item));
+    const users =  await this.userModel.find({_id: { $in: idArray}}).lean().exec();
+    const map = idArray.reduce((acc, id) => {
+      acc[id] = users.find(user => user._id.equals(id));
+      return acc;
+    }, {});
+    return map;
+  }
+
   async findById(id: string): Promise<UserDto | null> {
     return await this.userModel.findById({'_id': id}).exec();
   }
@@ -38,27 +48,17 @@ export class UserService {
     return await this.userModel.findOne(query).exec();
   }
 
-  async create(body: CreateUserDto): Promise<UserDto | null> {
-    const user: User = await this.userModel.create(body);
-
-    if (user) {
-      // publish the created user in a message on the Users queue
-      await this.usersQueue.add(QueueEvents.UserCreated, {
-        username: user.username,
-        bio: user.bio,
-        image: user.image,
-      });
-    }
-
-    return user;
-  }
-
-  async update(body: UpdateUserDto): Promise<UserDto | null> {
+  async upsert(body: UpdateUserDto | CreateUserDto): Promise<UserDto | null> {
     const update = {
       ...body,
       updatedAt: new Date(),
     };
-    const user: User = await this.userModel.findOneAndUpdate({'email': body.email}, update, {new: true, useFindAndModify: false});
+
+    const user: User = await this.userModel.findOneAndUpdate(
+      {'email': body.email},
+      update,
+      { new: true, useFindAndModify: false, upsert: true }
+    );
 
     if (user) {
       // publish the updated user in a message on the Users queue

@@ -73,7 +73,7 @@ export class ArticleService {
     return await this.articleModel.find(query).skip(offset).limit(limit).exec();
   }
 
-  async feed(user: UserDto, queryParams: PageDto): Promise<ArticleDto[]> {
+  async feed(user: UserDto, queryParams?: PageDto): Promise<ArticleDto[]> {
     // find all users this user is following
     const profiles: ProfileDto[] = await this.promisifyHttp.get(`${this.profileFeatureBaseUrl}/profiles/${user.username}/follows`);
     const usernames = profiles.map(profile => profile.username);
@@ -81,8 +81,8 @@ export class ArticleService {
     // find the respective users
     const users: UserDto[] = await this.promisifyHttp.get(`${this.userFeatureBaseUrl}/user/users/${usernames}`);
     const query = users.map(item => item._id);
-    const limit = parseInt(queryParams.limit) || 20;
-    const offset = parseInt(queryParams.offset) || 0;
+    const limit = queryParams?.limit && parseInt(queryParams.limit) || 20;
+    const offset = queryParams?.offset && parseInt(queryParams.offset) || 0;
 
     // find articles these users authored
     const articles = await this.articleModel.find({
@@ -143,7 +143,11 @@ export class ArticleService {
     const update = {
       deletedAt: new Date(),
     };
-    return await this.articleModel.findOneAndUpdate({slug}, update, {new: true, useFindAndModify: false});
+    const deleted = await this.articleModel.findOneAndUpdate({slug}, update, {new: true, useFindAndModify: false});
+    // delete all article comments
+    await this.deleteArticleComments(deleted);
+
+    return deleted;
   }
 
   async addComment(slug: string, body: CreateArticleCommentDto, user: UserDto): Promise<CommentDto | null> {
@@ -158,7 +162,7 @@ export class ArticleService {
 
   async getComments(slug: string): Promise<CommentDto[]> {
     const { _id: articleId } = await this.articleModel.findOne({slug}).exec();
-    return await this.commentModel.find({articleId}).exec();
+    return await this.commentModel.find({articleId, deletedAt: { $eq: null }}).exec();
   }
 
   async deleteComment(id: string, user: UserDto): Promise<CommentDto | null> {
@@ -168,6 +172,13 @@ export class ArticleService {
       deletedAt: new Date(),
     };
     return await this.commentModel.findOneAndUpdate({_id: id}, update, {new: true, useFindAndModify: false});
+  }
+
+  async deleteArticleComments(article: ArticleDto): Promise<any> {
+    const update = {
+      deletedAt: article.deletedAt
+    };
+    return this.commentModel.updateMany({articleId: article._id}, update);
   }
 
   async modifyFavorite(slug: string, op: FavoriteOperation): Promise<ArticleDto | null> {

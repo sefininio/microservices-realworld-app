@@ -41,7 +41,9 @@
         "serve": {
           "executor": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "realworld-example-app:build"
+            "buildTarget": "realworld-example-app:build",
+            "inspect": true,
+            "port": 57821
           }
         },
         "lint": {

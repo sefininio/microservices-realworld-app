@@ -16,31 +16,10 @@ export class UserConsumer {
     private readonly profileService: ProfileService,
   ) {}
 
-  @Process(QueueEvents.UserCreated)
-  async handleUserCreated(job: Job) {
-    const user = job.data;
-    const create = {
-      username: user.username,
-      bio: user.bio,
-      image: user.image,
-      followers: [],
-    }
-
-    return await this.profileService.create(create);
-  }
-
   @Process(QueueEvents.UserUpdated)
   async handleUserUpdated(job: Job) {
     const user: UserDto = job.data;
-    const profile: Profile = await this.profileService.findOneProfile(user.username);
-    const update = {
-      username: profile.username,
-      bio: user.bio,
-      image: user.image,
-      followers: profile.followers,
-    };
-
-    return await this.profileService.update(update);
+    return await this.profileService.upsert(user);
   }
 
 }

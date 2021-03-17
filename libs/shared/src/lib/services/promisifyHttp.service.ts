@@ -1,4 +1,5 @@
 import { HttpService, Injectable } from '@nestjs/common';
+import { AxiosRequestConfig } from 'axios';
 import { map } from 'rxjs/operators';
 
 /**
@@ -10,10 +11,28 @@ export class PromisifyHttpService {
     private httpService: HttpService,
   ){}
 
-  get(url: string): Promise<any> {
-    return this.httpService.get(url)
-      .pipe(map(res => res.data))
-      .toPromise();
+  get(url: string, config?: AxiosRequestConfig): Promise<any> {
+    return this.httpService.get(url, config)
+      .toPromise()
+      .then(res => res.data);
   }
+
+  post(url: string, data?: any, config?: AxiosRequestConfig): Promise<any> {
+    return this.httpService.post(url, data, config)
+      .toPromise()
+      .then(res => res.data);
+  }
+
+  put(url: string, data?: any, config?: AxiosRequestConfig): Promise<any> {
+    return this.httpService.put(url, data, config)
+      .toPromise()
+      .then(res => res.data);
+  }
+
+  delete(url: string, config?: AxiosRequestConfig): Promise<any> {
+    return this.httpService.delete(url, config)
+    .toPromise()
+    .then(res => res.data);
+}
 
 }

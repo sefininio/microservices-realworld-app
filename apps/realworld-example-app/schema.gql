@@ -1,0 +1,117 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Article {
+  _id: String!
+  author: User!
+  authorId: String!
+  body: String!
+  comments: [Comment!]!
+  createdAt: String!
+  deletedAt: String
+  description: String!
+  favoritesCount: Int!
+  slug: String!
+  tagList: [String]!
+  title: String!
+  updatedAt: String!
+}
+
+input ArticleCreateInput {
+  body: String!
+  description: String!
+  tagList: [String!]
+  title: String!
+}
+
+input ArticleUpdateInput {
+  body: String
+  description: String
+  slug: String!
+  tagList: [String!]
+  title: String
+}
+
+type Comment {
+  _id: String!
+  author: User!
+  authorId: String!
+  body: String!
+  createdAt: String!
+  deletedAt: String
+}
+
+input CommentCreateInput {
+  body: String!
+  slug: String!
+}
+
+input CommentDeleteInput {
+  id: String!
+  slug: String!
+}
+
+input LoginInput {
+  password: String!
+  username: String!
+}
+
+type Mutation {
+  addFavorite(slug: String!): Article!
+  addFollow(username: String!): Profile!
+  createArticle(createArticleData: ArticleCreateInput!): Article!
+  createComment(createCommentData: CommentCreateInput!): Comment!
+  createUser(createUserData: UserCreateInput!): User!
+  deleteArticle(slug: String!): Article!
+  deleteComment(deleteCommentData: CommentDeleteInput!): Comment!
+  login(loginData: LoginInput!): Token!
+  removeFavorite(slug: String!): Article!
+  removeFollow(username: String!): Profile!
+  updateArticle(updateArticleData: ArticleUpdateInput!): Article!
+  updateUser(updateUserData: UserUpdateInput!): User!
+}
+
+type Profile {
+  _id: String!
+  bio: String
+  following: Boolean!
+  image: String
+  username: String!
+}
+
+type Query {
+  articles(slug: String): [Article]!
+  profile(username: String!): Profile!
+  user(email: String, id: String, username: String): User!
+}
+
+type Token {
+  access_token: String!
+}
+
+type User {
+  _id: String!
+  articles: [Article!]!
+  bio: String
+  email: String!
+  feed: [Article!]!
+  image: String
+  password: String!
+  updatedAt: String!
+  username: String!
+}
+
+input UserCreateInput {
+  email: String!
+  password: String!
+  username: String!
+}
+
+input UserUpdateInput {
+  bio: String
+  email: String!
+  image: String
+  password: String
+  username: String!
+}
