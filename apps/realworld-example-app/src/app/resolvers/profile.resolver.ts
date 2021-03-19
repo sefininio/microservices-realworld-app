@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ExtendedGqlExecutionContext } from '../extended-gql-context';
 import { Profile } from '../models/profile.model';

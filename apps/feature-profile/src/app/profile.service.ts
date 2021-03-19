@@ -1,7 +1,7 @@
-import { CreateProfileDto, FollowOperation, ProfileDto, UpdateProfileDto, UserDto } from '@microservices-realworld-example-app/models';
+import { FollowOperation, ProfileDto, UserDto } from '@microservices-realworld-example-app/models';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { uniq, pull } from 'lodash';
+import { pull, uniq } from 'lodash';
 import { Model } from 'mongoose';
 import { Profile, ProfileDocument } from './schemas/profile.schema';
 

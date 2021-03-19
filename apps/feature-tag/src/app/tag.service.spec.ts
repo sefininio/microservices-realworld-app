@@ -1,21 +1,21 @@
-import { Test } from '@nestjs/testing';
+// import { Test } from '@nestjs/testing';
 
-import { TagService } from './tag.service';
+// import { TagService } from './tag.service';
 
-describe('TagService', () => {
-  let service: TagService;
+// describe('TagService', () => {
+//   let service: TagService;
 
-  beforeAll(async () => {
-    const app = await Test.createTestingModule({
-      providers: [TagService],
-    }).compile();
+//   beforeAll(async () => {
+//     const app = await Test.createTestingModule({
+//       providers: [TagService],
+//     }).compile();
 
-    service = app.get<TagService>(TagService);
-  });
+//     service = app.get<TagService>(TagService);
+//   });
 
-  // describe('getData', () => {
-  //   it('should return "Welcome to feature-tag!"', () => {
-  //     expect(service.getData()).toEqual({ message: 'Welcome to feature-tag!' });
-  //   });
-  // });
-});
+//   describe('getData', () => {
+//     it('should return "Welcome to feature-tag!"', () => {
+//       expect(service.getData()).toEqual({ message: 'Welcome to feature-tag!' });
+//     });
+//   });
+// });

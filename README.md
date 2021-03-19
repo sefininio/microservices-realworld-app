@@ -87,6 +87,8 @@ Feature services and the GraphQL gateway use the following libs:
 * `models` exposes DTOs and ENUMs used by feature services.
 * `shared` exposes reusable services used by feature services.
 
+
+
 ## Micro services message bus
 We use Redis as the queue persistence layer and [Bull](https://optimalbits.github.io/bull/) & `@nestjs/bull` for the queue implementation.
 
