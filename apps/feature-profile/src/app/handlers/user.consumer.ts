@@ -3,7 +3,6 @@ import { Process, Processor } from '@nestjs/bull';
 import { Injectable } from '@nestjs/common';
 import { Job } from 'bull';
 import { ProfileService } from '../profile.service';
-import { Profile } from '../schemas/profile.schema';
 
 /**
  * This class handles EvaluateTags messages on the Tags queue.

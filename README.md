@@ -66,7 +66,7 @@ fragment articleFragment on Article {
 
 query {
   me {
-		...userFragment
+    ...userFragment
     feed {
       ...articleFragment
     }
@@ -76,6 +76,10 @@ query {
   }
 }
 ```
+
+For using the GraphQL gateway with authenticaed routes:
+* First call the login mutation with `username` (email) and `password` -> get the `access_token`.
+* Add `{"token": <JWT token>}` to the headers.
 
 ## The libs
 Feature services and the GraphQL gateway use the following libs:
@@ -90,12 +94,12 @@ The purpose of this is for feature services to be able to notify something happe
 
 One flow that uses this is:
   - User creates an article, with `tagList` that includes some new tags and some existing tags
-  - `feature-article` service publishes a message with the `tagList` to the queue and saves the new article.
-  - `feature-tag` implements a consumer that processes the message and creates the new tags in DB.
+  - `feature-article` service publishes a message with the `tagList` on the `EvaluateTags` topic to the `Tags` queue and saves the new article.
+  - `feature-tag` implements a consumer that processes messages under the `EvaluateTags` topic on the `Tags` queue and creates the new tags in DB.
 
 Another exaple is:
   - User is created or updated
-  - `feature-user` service publishes `userCreated` or `userUpdated` event on the `Users` queue.
-  - `feature-profile` services implements a `UserConsumer` that processes those messages and creates/updates the relevant profile in DB.
+  - `feature-user` service publishes `userUpdated` event on the `Users` queue and saves the new/updated user.
+  - `feature-profile` services implements a `UserConsumer` consumer that processes messages under `userUpdated` topic on the `Users` queue and creates/updates the relevant profile in DB.
 
 See Real World App [spec here](https://github.com/gothinkster/realworld/tree/master/api).
