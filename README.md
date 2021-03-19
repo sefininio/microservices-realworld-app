@@ -35,6 +35,48 @@ use realworld
 ## The GraphQL Gateway
 * `realworld-examples-app` is the GraphQL gateway for the above services.
 
+The playground is accessible via `localhost:3330/graphql`.
+
+For example, getting the current logged-in user details, along with her feed and the list of articles she wrote (with comments for each article returned in feed/articles if they exist):
+```
+fragment userFragment on User {
+  _id
+  email
+  username
+}
+
+fragment articleFragment on Article {
+  _id
+  body
+  description
+  favoritesCount
+  tagList
+  title
+  comments {
+    _id
+    body
+    author {
+      ...userFragment
+    }
+  }
+  author {
+    ...userFragment
+  }
+}
+
+query {
+  me {
+		...userFragment
+    feed {
+      ...articleFragment
+    }
+    articles {
+      ...articleFragment
+    }
+  }
+}
+```
+
 ## The libs
 Feature services and the GraphQL gateway use the following libs:
 * `auth` is responsible for user login and issueing the JWT token, as well as exporting the `JwtAuthGuard` used on protected routes in all feature services.

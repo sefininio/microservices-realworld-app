@@ -27,6 +27,17 @@ export class UserResolver {
     return this.userService.getUser(id, username, email);
   }
 
+  @Query(returns => User, { name: 'me' })
+  async getMe(
+    @Context() ctx: ExtendedGqlExecutionContext,
+  ) {
+    const authHeader = {
+      "Authorization": `Bearer ${ctx.token}`,
+    };
+
+    return this.userService.getMe(authHeader);
+  }
+
   @Mutation(returns => User)
   async createUser (
     @Args('createUserData') createUserData: UserCreateInput,

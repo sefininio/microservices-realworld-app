@@ -42,6 +42,11 @@ export class UserService {
     return this.promisifyHttp.get(url);
   }
 
+  async getMe(authHeader: any): Promise<UserDto> {
+    const url = `${this.userFeatureBaseUrl}/user`;
+    return this.promisifyHttp.get(url, {headers: authHeader});
+  }
+
   async create(input: UserCreateInput): Promise<UserDto> {
     const url = `${this.userFeatureBaseUrl}/user`;
     return this.promisifyHttp.post(url, input);

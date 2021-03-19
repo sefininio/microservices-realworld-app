@@ -82,6 +82,7 @@ type Profile {
 
 type Query {
   articles(slug: String): [Article]!
+  me: User!
   profile(username: String!): Profile!
   user(email: String, id: String, username: String): User!
 }
