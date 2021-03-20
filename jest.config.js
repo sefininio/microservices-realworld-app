@@ -8,5 +8,6 @@ module.exports = {
     '<rootDir>/libs/models',
     '<rootDir>/libs/shared',
     '<rootDir>/libs/auth',
+    '<rootDir>/libs/data-access',
   ],
 };

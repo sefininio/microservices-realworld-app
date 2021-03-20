@@ -1,0 +1,40 @@
+overwrite: true
+schema: 'apps/realworld-example-app/schema.gql'
+
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+
+generates:
+  # Get schemas from server
+  libs/data-access/src/lib/autogenerate/schemas.tsx:
+    documents: 'apps/realworld-example-app/src/**/*.graphql'
+    plugins:
+      - time
+      - typescript
+
+  # Create operations based on queries
+  libs/data-access/src/lib/autogenerate/operations.tsx:
+    documents: 'apps/realworld-example-app/src/**/*.graphql'
+    preset: import-types
+    presetConfig:
+      typesPath: ./schemas
+    plugins:
+        - time
+        - typescript-operations
+
+  # 1. Export GraphQL documents
+  # 2. React interface
+  libs/data-access/src/lib/autogenerate/hooks.tsx:
+    documents: 'apps/realworld-example-app/src/**/*.graphql'
+    preset: import-types
+    presetConfig:
+      typesPath: ./operations
+    plugins:
+        - time
+        - typescript-react-apollo
+    config:
+      fetcher: fetch
+      withHOC: false
+      withComponent: false
+      withHooks: true

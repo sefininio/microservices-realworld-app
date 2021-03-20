@@ -1,0 +1,6 @@
+
+mutation login ($input: LoginInput!) {
+  login (loginData: $input) {
+    access_token
+  }
+}
