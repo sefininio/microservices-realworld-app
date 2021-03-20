@@ -23,6 +23,7 @@
     "feature-user": { "tags": [] },
     "models": { "tags": [] },
     "shared": { "tags": [] },
-    "auth": { "tags": [] }
+    "auth": { "tags": [] },
+    "data-access": { "tags": [] }
   }
 }

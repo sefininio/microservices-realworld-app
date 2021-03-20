@@ -1,4 +1,3 @@
-
 export class ExtendedGqlExecutionContext {
   req: any;
   res: any;

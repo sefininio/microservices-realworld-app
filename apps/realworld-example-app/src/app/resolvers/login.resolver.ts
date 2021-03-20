@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { LoginInput } from '../models/login.input';
 import { Token } from '../models/token.model';
