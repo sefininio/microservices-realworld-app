@@ -27,7 +27,7 @@ import { LoginResolver } from './resolvers/login.resolver';
     SharedModule,
     AuthModule,
     GraphQLModule.forRoot({
-      autoSchemaFile: join(process.cwd(), 'apps/realworld-example-app/schema.gql'),
+      autoSchemaFile: join(process.cwd(), 'apps/realworld-example-app/src/app/graphql/schema.graphql'),
       sortSchema: true,
       context: ({ req, res, payload, connection }): ExtendedGqlExecutionContext => ({
         req,

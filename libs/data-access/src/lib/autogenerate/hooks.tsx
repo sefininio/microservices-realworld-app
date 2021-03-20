@@ -3,7 +3,7 @@ import * as Types from './operations';
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {};
-// Generated on 2021-03-20T16:09:23+02:00
+// Generated on 2021-03-20T16:22:31+02:00
 
 export const UserFragmentFragmentDoc = gql`
   fragment userFragment on User {

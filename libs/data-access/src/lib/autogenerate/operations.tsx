@@ -1,6 +1,6 @@
 import * as Types from './schemas';
 
-// Generated on 2021-03-20T16:09:23+02:00
+// Generated on 2021-03-20T16:22:31+02:00
 
 export type ArticleFragmentFragment = { __typename?: 'Article' } & Pick<
   Types.Article,

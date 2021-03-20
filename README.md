@@ -86,6 +86,7 @@ Feature services and the GraphQL gateway use the following libs:
 * `auth` is responsible for user login and issueing the JWT token, as well as exporting the `JwtAuthGuard` used on protected routes in all feature services.
 * `models` exposes DTOs and ENUMs used by feature services.
 * `shared` exposes reusable services used by feature services.
+* `data-access` exposes auto-generated types and react hooks based on schema types and queries/mutations. Generated code is the result of running `yarn codegen` or `yarn codegen:watch`. Codegen config is `codegen.yaml`.
 
 
 
