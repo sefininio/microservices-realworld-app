@@ -1,0 +1,5 @@
+mutation removeFavorite ($input: String!) {
+  removeFavorite (slug: $input) {
+		...articleWithComments
+  }
+}

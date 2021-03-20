@@ -1,0 +1,5 @@
+query userById ($input: String) {
+  user (id: $input) {
+    ...userWithArticles
+  }
+}

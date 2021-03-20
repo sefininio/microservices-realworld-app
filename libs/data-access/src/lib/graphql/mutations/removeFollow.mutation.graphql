@@ -1,0 +1,5 @@
+mutation removeFollow ($input: String!) {
+  removeFollow (username: $input) {
+		...profile
+  }
+}

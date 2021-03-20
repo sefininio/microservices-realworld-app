@@ -1,0 +1,5 @@
+query userProfile ($input: String!) {
+  profile (username: $input) {
+    ...profile
+  }
+}

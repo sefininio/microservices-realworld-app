@@ -1,0 +1,47 @@
+fragment articleWithCommentsAndAuthor on Article {
+  _id
+  body
+  description
+  favoritesCount
+  tagList
+  title
+  comments {
+    ...commentWithAuthor
+  }
+  author {
+    ...author
+  }
+}
+
+fragment articleWithComments on Article {
+  _id
+  body
+  description
+  favoritesCount
+  tagList
+  title
+  comments {
+    ...commentWithAuthor
+  }
+}
+
+fragment article on Article {
+  _id
+  body
+  description
+  favoritesCount
+  tagList
+  title
+}
+
+fragment articleWithAuthor on Article {
+  _id
+  body
+  description
+  favoritesCount
+  tagList
+  title
+  author {
+    ...author
+  }
+}

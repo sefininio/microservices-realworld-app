@@ -1,0 +1,11 @@
+query me {
+  me {
+    ...user
+    feed {
+      ...articleWithComments
+    }
+    articles {
+      ...articleWithComments
+    }
+  }
+}

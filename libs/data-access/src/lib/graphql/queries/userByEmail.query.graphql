@@ -1,0 +1,5 @@
+query userByEmail ($input: String) {
+  user (email: $input) {
+    ...userWithArticles
+  }
+}

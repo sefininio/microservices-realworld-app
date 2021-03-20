@@ -1,7 +1,3 @@
 # models
 
-This library was generated with [Nx](https://nx.dev).
-
-## Running unit tests
-
-Run `nx test models` to execute the unit tests via [Jest](https://jestjs.io).
+This library publishes shared models, DTOs and enums to be used by the feature apps, the gateway app and the other libraries.

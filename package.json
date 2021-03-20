@@ -31,6 +31,7 @@
   },
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.3.12",
     "@graphql-codegen/add": "^2.0.2",
     "@nestjs/bull": "^0.3.1",
     "@nestjs/common": "^7.0.0",

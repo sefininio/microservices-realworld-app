@@ -1,0 +1,5 @@
+mutation addFollow ($input: String!) {
+  addFollow (username: $input) {
+ 		...profile
+  }
+}

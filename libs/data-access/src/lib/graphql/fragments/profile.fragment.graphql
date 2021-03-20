@@ -1,0 +1,7 @@
+fragment profile on Profile {
+    _id
+    bio
+    following
+    image
+    username
+}

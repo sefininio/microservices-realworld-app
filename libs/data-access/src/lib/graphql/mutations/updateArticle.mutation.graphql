@@ -1,0 +1,5 @@
+mutation updateArticle ($input: ArticleUpdateInput!) {
+  updateArticle (updateArticleData: $input) {
+		...articleWithAuthor
+  }
+}

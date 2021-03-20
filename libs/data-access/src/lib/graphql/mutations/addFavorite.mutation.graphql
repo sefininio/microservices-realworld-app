@@ -1,0 +1,5 @@
+mutation addFavorite ($input: String!) {
+  addFavorite (slug: $input) {
+ 		...articleWithComments
+  }
+}

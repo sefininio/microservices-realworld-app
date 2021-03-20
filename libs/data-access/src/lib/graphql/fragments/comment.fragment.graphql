@@ -1,0 +1,21 @@
+fragment commentWithAuthor on Comment {
+ 		_id
+    body
+    createdAt
+    author {
+      ...author
+    }
+}
+
+fragment comment on Comment {
+ 		_id
+    body
+    createdAt
+}
+
+fragment commentDeleted on Comment {
+ 		_id
+    body
+    createdAt
+    deletedAt
+}

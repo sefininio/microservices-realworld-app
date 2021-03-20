@@ -1,0 +1,5 @@
+mutation deleteArticle ($input: String!) {
+  deleteArticle (slug: $input) {
+		...articleWithAuthor
+  }
+}

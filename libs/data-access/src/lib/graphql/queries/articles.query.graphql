@@ -1,0 +1,5 @@
+query articles ($input: String) {
+  articles (slug: $input) {
+ 		...articleWithComments
+  }
+}

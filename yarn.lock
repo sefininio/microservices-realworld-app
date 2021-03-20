@@ -78,6 +78,25 @@
     tslib "^1.10.0"
     zen-observable "^0.8.14"
 
+"@apollo/client@^3.3.12":
+  version "3.3.12"
+  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.3.12.tgz#e723161617c479812ac425803a2b6a7c1b2466dd"
+  integrity sha512-1wLVqRpujzbLRWmFPnRCDK65xapOe2txY0sTI+BaqEbumMUVNS3vxojT6hRHf9ODFEK+F6MLrud2HGx0mB3eQw==
+  dependencies:
+    "@graphql-typed-document-node/core" "^3.0.0"
+    "@types/zen-observable" "^0.8.0"
+    "@wry/context" "^0.5.2"
+    "@wry/equality" "^0.3.0"
+    fast-json-stable-stringify "^2.0.0"
+    graphql-tag "^2.12.0"
+    hoist-non-react-statics "^3.3.2"
+    optimism "^0.14.0"
+    prop-types "^15.7.2"
+    symbol-observable "^2.0.0"
+    ts-invariant "^0.6.2"
+    tslib "^1.10.0"
+    zen-observable "^0.8.14"
+
 "@apollo/federation@^0.17.0":
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/@apollo/federation/-/federation-0.17.0.tgz#549c3f8c8d5a33db28a4c628d8a9fb5430758c62"
@@ -14622,6 +14641,15 @@ ts-invariant@^0.6.0:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/ts-invariant/-/ts-invariant-0.6.1.tgz#eb4c52b45daaca8367abbfd6cff998ea871d592d"
   integrity sha512-QQgN33g8E8yrdDuH29HASveLtbzMnRRgWh0i/JNTW4+zcLsdIOnfsgEDi/NKx4UckQyuMFt9Ujm6TWLWQ58Kvg==
+  dependencies:
+    "@types/ungap__global-this" "^0.3.1"
+    "@ungap/global-this" "^0.4.2"
+    tslib "^1.9.3"
+
+ts-invariant@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/ts-invariant/-/ts-invariant-0.6.2.tgz#2b95c0f25dd9da0c1d3b921e23ee5593133694d4"
+  integrity sha512-hsVurayufl1gXg8CHtgZkB7X0KtA3TrI3xcJ9xkRr8FeJHnM/TIEQkgBq9XkpduyBWWUdlRIR9xWf4Lxq3LJTg==
   dependencies:
     "@types/ungap__global-this" "^0.3.1"
     "@ungap/global-this" "^0.4.2"

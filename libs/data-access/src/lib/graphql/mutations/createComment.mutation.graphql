@@ -1,0 +1,5 @@
+mutation createComment ($input: CommentCreateInput!) {
+  createComment (createCommentData: $input) {
+		...commentWithAuthor
+  }
+}

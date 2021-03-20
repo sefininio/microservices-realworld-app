@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'apps/realworld-example-app/src/app/graphql/schema.graphql'
+schema: 'apps/realworld-example-app/schema.graphql'
 
 hooks:
   afterAllFileWrite:
@@ -7,18 +7,18 @@ hooks:
 
 generates:
   # Get schemas from server
-  libs/data-access/src/lib/autogenerate/schemas.tsx:
-    documents: 'apps/realworld-example-app/src/**/*.graphql'
+  libs/data-access/src/lib/autogenerate/types.tsx:
+    documents: 'libs/data-access/src/**/*.graphql'
     plugins:
       - time
       - typescript
 
   # Create operations based on queries
   libs/data-access/src/lib/autogenerate/operations.tsx:
-    documents: 'apps/realworld-example-app/src/**/*.graphql'
+    documents: 'libs/data-access/src/**/*.graphql'
     preset: import-types
     presetConfig:
-      typesPath: ./schemas
+      typesPath: ./types
     plugins:
         - time
         - typescript-operations
@@ -26,7 +26,7 @@ generates:
   # 1. Export GraphQL documents
   # 2. React interface
   libs/data-access/src/lib/autogenerate/hooks.tsx:
-    documents: 'apps/realworld-example-app/src/**/*.graphql'
+    documents: 'libs/data-access/src/**/*.graphql'
     preset: import-types
     presetConfig:
       typesPath: ./operations
@@ -38,3 +38,4 @@ generates:
       withHOC: false
       withComponent: false
       withHooks: true
+      withRefetchFn: true

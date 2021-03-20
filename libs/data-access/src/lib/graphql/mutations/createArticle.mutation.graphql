@@ -1,0 +1,5 @@
+mutation createArticle ($input: ArticleCreateInput!) {
+  createArticle (createArticleData: $input) {
+ 		...articleWithAuthor
+  }
+}
