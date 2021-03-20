@@ -1,0 +1,18 @@
+fragment articleFragment on Article {
+  _id
+  body
+  description
+  favoritesCount
+  tagList
+  title
+  comments {
+    _id
+    body
+    author {
+      ...userFragment
+    }
+  }
+  author {
+    ...userFragment
+  }
+}
