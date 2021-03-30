@@ -1,5 +1,6 @@
 import { CreateTagDto, TagDto } from '@microservices-realworld-example-app/models';
 import { Body, Controller, Get, Post } from '@nestjs/common';
+import { ApiOkResponse } from '@nestjs/swagger';
 import { TagService } from './tag.service';
 
 
@@ -13,6 +14,10 @@ export class TagController {
    * @returns string[]
    */
   @Get()
+  @ApiOkResponse({
+    description: 'Tags list.',
+    type: [String],
+  })
   listTags(): Promise<string[]> {
     return this.tagService.findAll();
   }
@@ -24,6 +29,10 @@ export class TagController {
    * @returns TagDto | null
    */
   @Post()
+  @ApiOkResponse({
+    description: 'Create tag.',
+    type: TagDto,
+  })
   create(@Body() body: CreateTagDto): Promise<TagDto | null> {
     return this.tagService.create(body);
   }

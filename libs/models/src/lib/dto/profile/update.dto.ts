@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 
 /**
@@ -5,11 +6,14 @@ import { IsNotEmpty } from 'class-validator';
  */
 export class UpdateProfileDto {
   @IsNotEmpty()
+  @ApiProperty()
   readonly username: string;
 
   @IsNotEmpty()
+  @ApiProperty()
   readonly image: string;
 
   @IsNotEmpty()
+  @ApiProperty()
   readonly bio: string;
 }
