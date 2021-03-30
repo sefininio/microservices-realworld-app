@@ -21,6 +21,7 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
+import { ApiCreatedResponse, ApiHeader, ApiOkResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { ArticleService } from './article.service';
 
 @Controller('/articles')
@@ -39,6 +40,10 @@ export class ArticleController {
    * Authentication optional, will return multiple articles, ordered by most recent first
    */
   @Get('/')
+  @ApiOkResponse({
+    description: 'The articles list',
+    type: [ArticleDto],
+  })
   listArticles(@Query() query: FindAllArticleQueryDto): Promise<ArticleDto[]> {
     return this.articleService.findAll(query);
   }
@@ -50,6 +55,17 @@ export class ArticleController {
    */
   @UseGuards(JwtAuthGuard)
   @Get('/feed')
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'JWT token',
+  })
+  @ApiUnauthorizedResponse({
+    description: 'Unauthorized'
+  })
+  @ApiOkResponse({
+    description: 'The user article feed',
+    type: [ArticleDto],
+  })
   getUserFeed(@Req() req, @Query() query?: PageDto): Promise<ArticleDto[]> {
     return this.articleService.feed(req.user, query);
   }
@@ -61,6 +77,10 @@ export class ArticleController {
    * @returns ArticleDto | null
    */
   @Get('/:slug')
+  @ApiOkResponse({
+    description: 'The article',
+    type: ArticleDto,
+  })
   getArticle(@Param('slug') slug: string): Promise<ArticleDto | null> {
     return this.articleService.findOne(slug);
   }
@@ -74,6 +94,17 @@ export class ArticleController {
    */
   @UseGuards(JwtAuthGuard)
   @Post('/')
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'JWT token',
+  })
+  @ApiUnauthorizedResponse({
+    description: 'Unauthorized'
+  })
+  @ApiCreatedResponse({
+    description: 'The record has been successfully created.',
+    type: ArticleDto,
+  })
   createArticle(
     @Body() body: CreateArticleDto,
     @Req() req: any
@@ -91,6 +122,17 @@ export class ArticleController {
    */
   @UseGuards(JwtAuthGuard)
   @Put('/:slug')
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'JWT token',
+  })
+  @ApiUnauthorizedResponse({
+    description: 'Unauthorized'
+  })
+  @ApiOkResponse({
+    description: 'The record has been successfully updated.',
+    type: ArticleDto,
+  })
   updateArticle(
     @Req() req: any,
     @Body() body: UpdateArticleDto,
@@ -108,6 +150,17 @@ export class ArticleController {
    */
   @UseGuards(JwtAuthGuard)
   @Delete('/:slug')
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'JWT token',
+  })
+  @ApiUnauthorizedResponse({
+    description: 'Unauthorized'
+  })
+  @ApiOkResponse({
+    description: 'The record has been successfully deleted.',
+    type: ArticleDto,
+  })
   deleteArticle(
     @Param('slug') slug: string,
     @Req() req: any
@@ -125,6 +178,17 @@ export class ArticleController {
    */
   @UseGuards(JwtAuthGuard)
   @Post('/:slug/comments')
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'JWT token',
+  })
+  @ApiUnauthorizedResponse({
+    description: 'Unauthorized'
+  })
+  @ApiCreatedResponse({
+    description: 'The record has been successfully created.',
+    type: ArticleDto,
+  })
   addComment(
     @Req() req: any,
     @Body() body: CreateArticleCommentDto,
@@ -140,6 +204,10 @@ export class ArticleController {
    * @returns the article comments - CommentDto[]
    */
   @Get('/:slug/comments')
+  @ApiOkResponse({
+    description: 'The comments for the article.',
+    type: [CommentDto],
+  })
   getComments(@Param('slug') slug: string): Promise<CommentDto[]> {
     return this.articleService.getComments(slug);
   }
@@ -154,6 +222,17 @@ export class ArticleController {
    */
   @UseGuards(JwtAuthGuard)
   @Delete('/:slug/comments/:id')
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'JWT token',
+  })
+  @ApiUnauthorizedResponse({
+    description: 'Unauthorized'
+  })
+  @ApiOkResponse({
+    description: 'The record has been successfully deleted.',
+    type: CommentDto,
+  })
   deleteComment(
     @Req() req: any,
     @Param('slug') slug: string,
@@ -170,6 +249,17 @@ export class ArticleController {
    */
   @UseGuards(JwtAuthGuard)
   @Post('/:slug/favorite')
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'JWT token',
+  })
+  @ApiUnauthorizedResponse({
+    description: 'Unauthorized'
+  })
+  @ApiOkResponse({
+    description: 'Add favorite to article.',
+    type: ArticleDto,
+  })
   addFavorite(@Param('slug') slug: string): Promise<ArticleDto | null> {
     return this.articleService.modifyFavorite(
       slug,
@@ -185,6 +275,17 @@ export class ArticleController {
    */
   @UseGuards(JwtAuthGuard)
   @Delete('/:slug/favorite')
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'JWT token',
+  })
+  @ApiUnauthorizedResponse({
+    description: 'Unauthorized'
+  })
+  @ApiOkResponse({
+    description: 'Remove favorite to article.',
+    type: ArticleDto,
+  })
   removeFavorite(@Param('slug') slug: string): Promise<ArticleDto | null> {
     return this.articleService.modifyFavorite(
       slug,

@@ -14,6 +14,7 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
+import { ApiHeader, ApiOkResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { UserService } from './user.service';
 
 @Controller('/user')
@@ -28,6 +29,17 @@ export class UserController {
    */
   @UseGuards(JwtAuthGuard)
   @Get('/')
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'JWT token',
+  })
+  @ApiUnauthorizedResponse({
+    description: 'Unauthorized'
+  })
+  @ApiOkResponse({
+    description: 'Current logged in user.',
+    type: UserDto,
+  })
   getMe(@Req() req): Promise<UserDto> {
     return req.user;
   }
@@ -38,16 +50,28 @@ export class UserController {
    * @returns UserDto[]
    */
   @Get('/users')
+  @ApiOkResponse({
+    description: 'All users.',
+    type: [UserDto],
+  })
   getUsers(): Promise<UserDto[]> {
     return this.userService.findAll();
   }
 
   @Get('/users/:usernames')
+  @ApiOkResponse({
+    description: 'Get users by comma delimited list of usernames.',
+    type: [UserDto],
+  })
   getUsersByUsernames(@Param('usernames') usernames: string): Promise<UserDto[]> {
     return this.userService.findAll(usernames);
   }
 
   @Get('/users/ids/:ids')
+  @ApiOkResponse({
+    description: 'Get users by comma delimited list of ids.',
+    type: [UserDto],
+  })
   getUsersByIds(@Param('ids') ids: string) {
     return this.userService.findByIds(ids);
   }
@@ -59,6 +83,10 @@ export class UserController {
    * @returns UserDto | null
    */
   @Get('/:id')
+  @ApiOkResponse({
+    description: 'Get user by id.',
+    type: UserDto,
+  })
   getUserById(@Param('id') id: string): Promise<UserDto | null> {
     return this.userService.findById(id);
   }
@@ -70,6 +98,10 @@ export class UserController {
    * @returns UserDto | null
    */
   @Get('/username/:username')
+  @ApiOkResponse({
+    description: 'Get user by username.',
+    type: UserDto,
+  })
   getUserByUsername(@Param('username') username: string): Promise<UserDto | null> {
     return this.userService.findOne({ username });
   }
@@ -81,6 +113,10 @@ export class UserController {
    * @returns UserDto | null
    */
   @Get('/email/:email')
+  @ApiOkResponse({
+    description: 'Get user by email.',
+    type: UserDto,
+  })
   getUserByEmail(@Param('email') email: string): Promise<UserDto | null> {
     return this.userService.findOne({ email });
   }
@@ -92,6 +128,10 @@ export class UserController {
    * @returns UserDto | null
    */
   @Post('/')
+  @ApiOkResponse({
+    description: 'Create user.',
+    type: UserDto,
+  })
   createUser(@Body() body: CreateUserDto): Promise<UserDto | null> {
     return this.userService.upsert(body);
   }
@@ -104,6 +144,17 @@ export class UserController {
    */
   @UseGuards(JwtAuthGuard)
   @Put('/')
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'JWT token',
+  })
+  @ApiUnauthorizedResponse({
+    description: 'Unauthorized'
+  })
+  @ApiOkResponse({
+    description: 'Updaterrent logged in user.',
+    type: UserDto,
+  })
   updateUser(@Body() body: UpdateUserDto): Promise<UserDto | null> {
     return this.userService.upsert(body);
   }

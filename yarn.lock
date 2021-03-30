@@ -2214,6 +2214,11 @@
   resolved "https://registry.yarnpkg.com/@nestjs/mapped-types/-/mapped-types-0.3.0.tgz#1dcf178c198e948c548ca803850e2eba639900d4"
   integrity sha512-AdWVTOg3AhAEcVhPGgUJiLbLXb7L5Pe7vc20YQ0oOXP/KD/nJj0I3BcytVdBhzmgepol67BdivNUvo27Hx3Ndw==
 
+"@nestjs/mapped-types@0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@nestjs/mapped-types/-/mapped-types-0.4.0.tgz#352b9a661d6d36863cf48b2057616cef1b2c802d"
+  integrity sha512-TVtd/aTb7EqPhVczdeuvzF9dY0fyE3ivvCstc2eO+AkNqrfzSG1kXYYiUUznKjd0qDa8g2TmPSmHUQ21AXsV1Q==
+
 "@nestjs/mongoose@^7.2.4":
   version "7.2.4"
   resolved "https://registry.yarnpkg.com/@nestjs/mongoose/-/mongoose-7.2.4.tgz#60a50532a244279703344368d74ecd802aeda4a4"
@@ -2244,6 +2249,15 @@
     "@angular-devkit/schematics" "11.2.0"
     fs-extra "9.1.0"
     pluralize "8.0.0"
+
+"@nestjs/swagger@^4.8.0":
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/@nestjs/swagger/-/swagger-4.8.0.tgz#7ebfeb0d59e0c27ff40beb429d7311b752c0dca4"
+  integrity sha512-YU+ahCOoOTZwSHrODHBiQDCqi7GWEjmSFg3Tot/lwVuQ321/3fIOz/lf+ehVQ5DFr7nVMhB7BRWFJLtE/+NhqQ==
+  dependencies:
+    "@nestjs/mapped-types" "0.4.0"
+    lodash "4.17.21"
+    path-to-regexp "3.2.0"
 
 "@nestjs/testing@^7.0.0":
   version "7.6.13"
@@ -14358,6 +14372,18 @@ svgo@^1.0.0, svgo@^1.2.2:
     stable "^0.1.8"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
+
+swagger-ui-dist@^3.18.1:
+  version "3.45.1"
+  resolved "https://registry.yarnpkg.com/swagger-ui-dist/-/swagger-ui-dist-3.45.1.tgz#3c0b718cb5e944056500d92a45a04d2072073582"
+  integrity sha512-QWotWWYkgSdPtI6HW12q4Ua5zxIhhvnYvx9iZKtDbZuVvJSTnMIzaHrE6KJVe/8plWh7Wpd/qqeBfpOxF8g1/g==
+
+swagger-ui-express@^4.1.6:
+  version "4.1.6"
+  resolved "https://registry.yarnpkg.com/swagger-ui-express/-/swagger-ui-express-4.1.6.tgz#682294af3d5c70f74a1fa4d6a9b503a9ee55ea82"
+  integrity sha512-Xs2BGGudvDBtL7RXcYtNvHsFtP1DBFPMJFRxHe5ez/VG/rzVOEjazJOOSc/kSCyxreCTKfJrII6MJlL9a6t8vw==
+  dependencies:
+    swagger-ui-dist "^3.18.1"
 
 swap-case@^2.0.1:
   version "2.0.2"
