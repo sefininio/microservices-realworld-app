@@ -9,5 +9,6 @@ module.exports = {
     '<rootDir>/libs/shared',
     '<rootDir>/libs/auth',
     '<rootDir>/libs/data-access',
+    '<rootDir>/apps/gateway',
   ],
 };

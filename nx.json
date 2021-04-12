@@ -24,6 +24,7 @@
     "models": { "tags": [] },
     "shared": { "tags": [] },
     "auth": { "tags": [] },
-    "data-access": { "tags": [] }
+    "data-access": { "tags": [] },
+    "gateway": { "tags": [] }
   }
 }
