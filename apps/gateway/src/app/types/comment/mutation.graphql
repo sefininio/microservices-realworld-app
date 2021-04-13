@@ -1,0 +1,4 @@
+type Mutation {
+  createComment(body: String!, slug: String!): Comment!
+  deleteComment(id: String!, slug: String!): Comment!
+}

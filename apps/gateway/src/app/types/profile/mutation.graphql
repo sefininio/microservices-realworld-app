@@ -1,0 +1,4 @@
+type Mutation {
+  addFollow(username: String!): Profile!
+  removeFollow(username: String!): Profile!
+}
