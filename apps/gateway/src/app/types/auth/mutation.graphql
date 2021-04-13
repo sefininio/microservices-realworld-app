@@ -1,3 +1,3 @@
 type Mutation {
-  login(password: String!, username: String!): Token!
+  login(loginData: LoginInput!): Token!
 }

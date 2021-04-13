@@ -1,0 +1,4 @@
+input CommentCreateInput {
+  body: String!
+  slug: String!
+}

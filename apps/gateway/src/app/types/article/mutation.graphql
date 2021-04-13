@@ -1,7 +1,7 @@
 type Mutation {
   addFavorite(slug: String!): Article!
-  createArticle(body: String!, description: String!, tagList: [String!], title: String!): Article!
+  createArticle(createArticleData: ArticleCreateInput!): Article!
   deleteArticle(slug: String!): Article!
   removeFavorite(slug: String!): Article!
-  updateArticle(body: String, description: String, slug: String!, tagList: [String!], title: String): Article!
+  updateArticle(updateArticleData: ArticleUpdateInput!): Article!
 }

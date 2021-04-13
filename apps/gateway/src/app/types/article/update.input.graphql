@@ -1,0 +1,7 @@
+input ArticleUpdateInput {
+  body: String
+  description: String
+  slug: String!
+  tagList: [String!]
+  title: String
+}

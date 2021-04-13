@@ -1,0 +1,4 @@
+input CommentDeleteInput {
+  id: String!
+  slug: String!
+}

@@ -1,0 +1,7 @@
+input UserUpdateInput {
+  bio: String
+  email: String!
+  image: String
+  password: String
+  username: String!
+}

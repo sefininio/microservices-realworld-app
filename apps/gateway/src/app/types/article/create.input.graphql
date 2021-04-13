@@ -1,0 +1,6 @@
+input ArticleCreateInput {
+  body: String!
+  description: String!
+  tagList: [String!]
+  title: String!
+}
