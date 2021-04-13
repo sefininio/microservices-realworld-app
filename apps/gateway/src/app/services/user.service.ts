@@ -3,8 +3,6 @@ import axios from 'axios';
 const userFeatureBaseUrl = 'http://localhost:3334/api';
 
 export const login = async (input) => {
-  console.log(input);
-
   const url = `${userFeatureBaseUrl}/auth/login`;
   const token = await axios.post(url, input);
   return token.data;
