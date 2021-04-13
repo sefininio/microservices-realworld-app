@@ -1,0 +1,15 @@
+type Article {
+  _id: String!
+  author: User!
+  authorId: String!
+  body: String!
+  comments: [Comment!]!
+  createdAt: String!
+  deletedAt: String
+  description: String!
+  favoritesCount: Int!
+  slug: String!
+  tagList: [String]!
+  title: String!
+  updatedAt: String!
+}

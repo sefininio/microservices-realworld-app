@@ -1,0 +1,7 @@
+type Profile {
+  _id: String!
+  bio: String
+  following: Boolean!
+  image: String
+  username: String!
+}

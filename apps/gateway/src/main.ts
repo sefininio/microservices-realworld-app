@@ -1,18 +1,21 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
+import { loadFilesSync } from '@graphql-tools/load-files';
+import { mergeTypeDefs } from '@graphql-tools/merge';
+import { ApolloServer, makeExecutableSchema } from 'apollo-server';
+import * as path from 'path';
 
-import * as express from 'express';
+const typesArray = loadFilesSync(
+  path.join(__dirname, '../../../apps/gateway/src/app/**/*.graphql')
+);
+const typeDefs = mergeTypeDefs(typesArray);
 
-const app = express();
-
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to gateway!' });
+const schema = makeExecutableSchema({
+  typeDefs,
 });
 
-const port = process.env.port || 3333;
-const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api`);
+const server = new ApolloServer({
+  schema,
 });
-server.on('error', console.error);
+
+server.listen({ port: 3000 }).then(({ url }) => {
+  console.log(`🚀 Server ready at ${url}`);
+});

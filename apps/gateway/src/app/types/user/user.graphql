@@ -1,0 +1,11 @@
+type User {
+  _id: String!
+  articles: [Article!]!
+  bio: String
+  email: String!
+  feed: [Article!]!
+  image: String
+  password: String!
+  updatedAt: String!
+  username: String!
+}

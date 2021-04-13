@@ -1,0 +1,8 @@
+type Comment {
+  _id: String!
+  author: User!
+  authorId: String!
+  body: String!
+  createdAt: String!
+  deletedAt: String
+}
