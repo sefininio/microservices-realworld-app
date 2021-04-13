@@ -1,6 +1,7 @@
 import { loadFilesSync } from '@graphql-tools/load-files';
-import { mergeTypeDefs, mergeResolvers } from '@graphql-tools/merge';
+import { mergeResolvers, mergeTypeDefs } from '@graphql-tools/merge';
 import { ApolloServer, makeExecutableSchema } from 'apollo-server';
+import depthLimit from 'graphql-depth-limit';
 import * as path from 'path';
 import articleResolvers from './app/resolvers/article.resolvers';
 import CommentResolvers from './app/resolvers/comment.resolvers';
@@ -12,6 +13,12 @@ const typesArray = loadFilesSync(
   path.join(__dirname, '../../../apps/gateway/src/app/**/*.graphql')
 );
 const typeDefs = mergeTypeDefs(typesArray);
+
+// This should have worked, but loadFilesSync only loads code files with nodejs require.
+// https://github.com/ardatan/graphql-tools/issues/2691
+// const resolversArray = loadFilesSync(
+//   path.join(__dirname ,'../../../apps/gateway/src/app/**/*.resolvers.*')
+// );
 
 const resolversArray = [
   articleResolvers,
@@ -26,6 +33,11 @@ const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
 });
+
+const validationRules = [
+  depthLimit(3),
+];
+
 const server = new ApolloServer({
   schema,
   context: ({ req, res }) => {
@@ -49,6 +61,7 @@ const server = new ApolloServer({
       }
     }
    },
+   validationRules,
 });
 
 server.listen({ port: 3000 }).then(({ url }) => {
