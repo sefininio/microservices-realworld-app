@@ -1,0 +1,4 @@
+type CommentFeed {
+  cursor: String
+  comments: [Comment!]!
+}

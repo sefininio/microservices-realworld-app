@@ -8,6 +8,7 @@ import {
   update as updateArticle
 } from '../services/article.service';
 import { getUser } from '../services/user.service';
+import commentFeedResolver from './comment/commentFeed.resolver';
 
 const resolvers = {
   Query: {
@@ -23,6 +24,7 @@ const resolvers = {
   Article: {
     author: article => getUser(article.authorId),
     comments: article => getArticleComments(article.slug),
+    commentFeed: commentFeedResolver,
   }
 }
 

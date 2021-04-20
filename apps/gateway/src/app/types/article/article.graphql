@@ -4,6 +4,7 @@ type Article {
   authorId: String!
   body: String!
   comments: [Comment!]!
+  commentFeed(cursor: String): CommentFeed
   createdAt: String!
   deletedAt: String
   description: String!
