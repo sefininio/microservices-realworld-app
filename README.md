@@ -18,9 +18,15 @@
 
 * Run `docker-compose up -d`
 * Create the mongo db:
+SSH into the mongo container:
 ```
 docker exec -it realworld-mongo sh
+```
+Once SSHed into it:
+```
+mongo
 use realworld
+quit()
 ```
 * Change `.env` file values if required.
 * Run all services using `yarn start:all`
