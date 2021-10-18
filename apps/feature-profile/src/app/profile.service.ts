@@ -40,6 +40,7 @@ export class ProfileService {
 
   async upsert(user: UserDto): Promise<ProfileDto | null> {
     const update = {
+      followers: [],
       username: user.username,
       bio: user.bio,
       image: user.image,
