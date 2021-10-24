@@ -18,6 +18,7 @@ import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import { Queue } from 'bull';
 import { Model } from 'mongoose';
+import { ObjectId } from 'mongodb';
 import { Article, ArticleDocument } from './schemas/article.schema';
 import { Comment, CommentDocument } from './schemas/comment.schema';
 
@@ -80,7 +81,7 @@ export class ArticleService {
 
     // find the respective users
     const users: UserDto[] = await this.promisifyHttp.get(`${this.userFeatureBaseUrl}/user/users/${usernames}`);
-    const query = users.map(item => item._id);
+    const query = users.map(item => new ObjectId(item._id));
     const limit = queryParams?.limit && parseInt(queryParams.limit) || 20;
     const offset = queryParams?.offset && parseInt(queryParams.offset) || 0;
 
@@ -88,6 +89,7 @@ export class ArticleService {
     const articles = await this.articleModel.find({
       authorId: { $in: query }
     }).sort({createdAt: -1}).skip(offset).limit(limit).exec();
+
     return articles;
   }
 
