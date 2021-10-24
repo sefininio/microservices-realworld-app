@@ -1,11 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { ObjectId } from 'mongoose';
 
 /**
  * Profile response object
  */
 export class ProfileDto {
   @ApiProperty()
-  readonly _id: string;
+  readonly _id: ObjectId;
 
   @ApiProperty()
   readonly username: string;

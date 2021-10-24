@@ -1,17 +1,18 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
+import { ObjectId } from 'mongoose';
 
 /**
  * Comment response
  */
 export class CommentDto {
   @ApiPropertyOptional()
-  readonly _id: string;
+  readonly _id: ObjectId;
 
   @ApiPropertyOptional()
-  readonly authorId: string;
+  readonly authorId: ObjectId;
 
   @ApiPropertyOptional()
-  readonly articleId: string;
+  readonly articleId: ObjectId;
 
   @ApiPropertyOptional()
   readonly body: string;
