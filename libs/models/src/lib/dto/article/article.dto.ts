@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { ObjectId } from 'mongoose';
+import { ObjectId } from 'mongodb';
 
 /**
  * Article response

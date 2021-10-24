@@ -1,5 +1,5 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { ObjectId } from 'mongoose';
+import { ObjectId } from 'mongodb';
 import { PageDto } from '../base/page.dto';
 
 /**

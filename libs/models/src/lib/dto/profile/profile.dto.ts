@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { ObjectId } from 'mongoose';
+import { ObjectId } from 'mongodb';
 
 /**
  * Profile response object

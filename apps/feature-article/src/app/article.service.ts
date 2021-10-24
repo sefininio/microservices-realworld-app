@@ -44,7 +44,7 @@ export class ArticleService {
     const article: ArticleDto = await this.articleModel.findOne({slug}).exec();
 
     // only original author can update
-    if (!article || article.authorId !== user._id) {
+    if (!article || !article.authorId.equals(user._id)) {
       throw new UnauthorizedException();
     }
   }
@@ -53,7 +53,7 @@ export class ArticleService {
     const comment: CommentDto = await this.commentModel.findOne({_id: id}).exec();
 
     // only original author can update
-    if (!comment || comment.authorId !== user._id) {
+    if (!comment || !comment.authorId.equals(user._id)) {
       throw new UnauthorizedException();
     }
   }
