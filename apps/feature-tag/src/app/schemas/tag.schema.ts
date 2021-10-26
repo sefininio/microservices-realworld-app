@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { ObjectId } from 'mongodb';
 
 export type TagDocument = Tag & Document;
 
@@ -8,7 +9,7 @@ export type TagDocument = Tag & Document;
  */
  @Schema()
 export class Tag {
-  _id: string;
+  _id: ObjectId;
 
   @Prop({required: true, unique: true})
   tagName: string;

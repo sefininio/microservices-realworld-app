@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { ObjectId } from 'mongodb';
 
 export type ProfileDocument = Profile & Document;
 
@@ -8,7 +9,7 @@ export type ProfileDocument = Profile & Document;
  */
  @Schema()
 export class Profile {
-  _id: string;
+  _id: ObjectId;
 
   @Prop({required: true})
   username: string;

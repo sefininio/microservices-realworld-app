@@ -1,17 +1,18 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ObjectId } from 'mongodb';
 
 /**
  * Article response
  */
 export class ArticleDto {
   @ApiProperty()
-  readonly _id: string;
+  readonly _id: ObjectId;
 
   @ApiProperty()
   readonly slug: string;
 
   @ApiProperty()
-  readonly authorId: string;
+  readonly authorId: ObjectId;
 
   @ApiProperty()
   readonly title: string;

@@ -18,6 +18,7 @@ import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import { Queue } from 'bull';
 import { Model } from 'mongoose';
+import { ObjectId } from 'mongodb';
 import { Article, ArticleDocument } from './schemas/article.schema';
 import { Comment, CommentDocument } from './schemas/comment.schema';
 
@@ -44,7 +45,7 @@ export class ArticleService {
     const article: ArticleDto = await this.articleModel.findOne({slug}).exec();
 
     // only original author can update
-    if (!article || article.authorId !== user._id) {
+    if (!article || !article.authorId.equals(user._id)) {
       throw new UnauthorizedException();
     }
   }
@@ -53,7 +54,7 @@ export class ArticleService {
     const comment: CommentDto = await this.commentModel.findOne({_id: id}).exec();
 
     // only original author can update
-    if (!comment || comment.authorId !== user._id) {
+    if (!comment || !comment.authorId.equals(user._id)) {
       throw new UnauthorizedException();
     }
   }
@@ -80,7 +81,7 @@ export class ArticleService {
 
     // find the respective users
     const users: UserDto[] = await this.promisifyHttp.get(`${this.userFeatureBaseUrl}/user/users/${usernames}`);
-    const query = users.map(item => item._id);
+    const query = users.map(user => new ObjectId(user._id));
     const limit = queryParams?.limit && parseInt(queryParams.limit) || 20;
     const offset = queryParams?.offset && parseInt(queryParams.offset) || 0;
 
@@ -88,6 +89,7 @@ export class ArticleService {
     const articles = await this.articleModel.find({
       authorId: { $in: query }
     }).sort({createdAt: -1}).skip(offset).limit(limit).exec();
+
     return articles;
   }
 
@@ -183,12 +185,12 @@ export class ArticleService {
 
   async modifyFavorite(slug: string, op: FavoriteOperation): Promise<ArticleDto | null> {
     const article: Article = await this.articleModel.findOne({slug}).exec();
-    if (article.favoritesCount === 0 && op === FavoriteOperation.Decrement) {
+    if (article.favoritesCount === 0 && op === 'Decrement') {
       return article;
     }
 
     const update = {
-      $inc: { favoritesCount: op === FavoriteOperation.Increment ? 1 : -1 },
+      $inc: { favoritesCount: op === 'Increment' ? 1 : -1 },
       updatedAt: new Date(),
     };
 

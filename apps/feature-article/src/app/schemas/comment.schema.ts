@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { ObjectId } from 'mongodb';
 
 export type CommentDocument = Comment & Document;
 
@@ -8,13 +9,13 @@ export type CommentDocument = Comment & Document;
  */
  @Schema()
 export class Comment {
-  _id: string;
+  _id: ObjectId;
 
   @Prop({required: true})
-  authorId: string;
+  authorId: ObjectId;
 
   @Prop({required: true})
-  articleId: string;
+  articleId: ObjectId;
 
   @Prop({required: true})
   body: string;

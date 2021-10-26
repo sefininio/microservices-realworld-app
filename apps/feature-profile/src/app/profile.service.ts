@@ -59,11 +59,11 @@ export class ProfileService {
       followers: profile.followers,
     }
     switch (op) {
-      case FollowOperation.Follow:
+      case 'FOLLOW':
         update.followers.push(user.username);
         update.followers = uniq(update.followers);
         break;
-      case FollowOperation.Unfollow:
+      case 'UNFOLLOW':
         update.followers = pull(update.followers, user.username);
         break;
     }

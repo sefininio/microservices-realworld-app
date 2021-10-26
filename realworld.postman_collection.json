@@ -170,7 +170,13 @@
 					"name": "update user",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vbW8xNEBnbWFpbC5jb20iLCJzdWIiOiI2MTc1NDFjMGQ2OGQyYjVmY2ZhM2RlZGIiLCJpYXQiOjE2MzUwNzQ1NDEsImV4cCI6MTYzNTE2MDk0MX0.JT-ndJggGot3tUrW6krxYW1ldPV0PchDA3M246vV_bg",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"email\": \"momo14@gmail.com\",\n    \"bio\": \"this is my bio\",\n    \"image\": \"http://link.to/image.jpg\",\n    \"username\": \"momo14\"\n}",
@@ -309,7 +315,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vbW8xNEBnbWFpbC5jb20iLCJzdWIiOiI2MDQ2NmQ2MGUwNzE0MzI0NDZhMmJkN2QiLCJpYXQiOjE2MTU0MDM3NjIsImV4cCI6MTYxNTQwNzM2Mn0.lnnFtI2OdZwBgETBKbR8ZIu98Sm6visplPZSAHl8iK0",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vbW8xNEBnbWFpbC5jb20iLCJzdWIiOiI2MTc1NDFjMGQ2OGQyYjVmY2ZhM2RlZGIiLCJpYXQiOjE2MzUwODAxNTQsImV4cCI6MTYzNTE2NjU1NH0.m6_isXL5HMB-YLAJpLpqR2aB3eUG3byk-7WeyRtyqFc",
 								"type": "text"
 							}
 						],
@@ -323,7 +329,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3336/api/profiles/momo18",
+							"raw": "localhost:3336/api/profiles/momo14",
 							"host": [
 								"localhost"
 							],
@@ -331,7 +337,7 @@
 							"path": [
 								"api",
 								"profiles",
-								"momo18"
+								"momo14"
 							]
 						}
 					},
@@ -361,7 +367,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3336/api/profiles/follows",
+							"raw": "localhost:3336/api/profiles/momo14/follows",
 							"host": [
 								"localhost"
 							],
@@ -369,6 +375,7 @@
 							"path": [
 								"api",
 								"profiles",
+								"momo14",
 								"follows"
 							]
 						}
@@ -403,10 +410,16 @@
 					"name": "create article",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vbW8xNEBnbWFpbC5jb20iLCJzdWIiOiI2MTc1NDFjMGQ2OGQyYjVmY2ZhM2RlZGIiLCJpYXQiOjE2MzUwNzQ1NDEsImV4cCI6MTYzNTE2MDk0MX0.JT-ndJggGot3tUrW6krxYW1ldPV0PchDA3M246vV_bg",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"nx, nest and graphql realworld micro-services workshop 2021\",\n    \"body\": \"the post body\",\n    \"description\": \"the post desc\",\n    \"authorId\": \"6040887b743b0be5e65b5b47\",\n    \"tagList\": [\"nx\", \"nest.js\", \"realworld\", \"graphql\", \"micro-services\", \"mongoose\"]\n}",
+							"raw": "{\n    \"title\": \"nx, nest and graphql realworld micro-services workshop 2021\",\n    \"body\": \"the post body\",\n    \"description\": \"the post desc\",\n    \"authorId\": \"617541c0d68d2b5fcfa3dedb\",\n    \"tagList\": [\"nx\", \"nest.js\", \"realworld\", \"graphql\", \"micro-services\", \"mongoose\"]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -497,6 +510,42 @@
 								"api",
 								"articles",
 								"feed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vbW8xNEBnbWFpbC5jb20iLCJzdWIiOiI2MDQ2NmQ2MGUwNzE0MzI0NDZhMmJkN2QiLCJpYXQiOjE2MTU4OTcxOTUsImV4cCI6MTYxNTk4MzU5NX0.04E8Rz1z4yvS1HXRrC-OoTM1KSMz2Cd5AG6WMaMmzFw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"body\": \"Great post!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3337/api/articles/realworld-micro-services-workshop-2021-ibnfzg/comments",
+							"host": [
+								"localhost"
+							],
+							"port": "3337",
+							"path": [
+								"api",
+								"articles",
+								"realworld-micro-services-workshop-2021-ibnfzg",
+								"comments"
 							]
 						}
 					},

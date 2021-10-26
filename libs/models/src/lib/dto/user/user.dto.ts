@@ -1,11 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { ObjectId } from 'mongodb';
 
 /**
  * User response object
  */
 export class UserDto {
   @ApiProperty()
-  readonly _id: string;
+  readonly _id: ObjectId;
 
   @ApiProperty()
   readonly email: string;

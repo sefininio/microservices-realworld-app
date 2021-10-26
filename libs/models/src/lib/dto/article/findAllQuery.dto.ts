@@ -1,4 +1,5 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
+import { ObjectId } from 'mongodb';
 import { PageDto } from '../base/page.dto';
 
 /**
@@ -9,7 +10,7 @@ import { PageDto } from '../base/page.dto';
   readonly tag: string;
 
   @ApiPropertyOptional()
-  readonly author: string;
+  readonly author: ObjectId;
 
   @ApiPropertyOptional()
   readonly favorited: string;
