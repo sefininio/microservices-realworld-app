@@ -1,4 +1,1 @@
-export enum FollowOperation {
-  Follow = 'FOLLOW',
-  Unfollow = 'UNFOLLOW',
-}
+export type FollowOperation = 'FOLLOW' | 'UNFOLLOW';

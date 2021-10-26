@@ -81,7 +81,7 @@ export class ArticleService {
 
     // find the respective users
     const users: UserDto[] = await this.promisifyHttp.get(`${this.userFeatureBaseUrl}/user/users/${usernames}`);
-    const query = users.map(item => new ObjectId(item._id));
+    const query = users.map(user => new ObjectId(user._id));
     const limit = queryParams?.limit && parseInt(queryParams.limit) || 20;
     const offset = queryParams?.offset && parseInt(queryParams.offset) || 0;
 
@@ -185,12 +185,12 @@ export class ArticleService {
 
   async modifyFavorite(slug: string, op: FavoriteOperation): Promise<ArticleDto | null> {
     const article: Article = await this.articleModel.findOne({slug}).exec();
-    if (article.favoritesCount === 0 && op === FavoriteOperation.Decrement) {
+    if (article.favoritesCount === 0 && op === 'Decrement') {
       return article;
     }
 
     const update = {
-      $inc: { favoritesCount: op === FavoriteOperation.Increment ? 1 : -1 },
+      $inc: { favoritesCount: op === 'Increment' ? 1 : -1 },
       updatedAt: new Date(),
     };
 

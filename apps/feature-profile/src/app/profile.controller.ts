@@ -56,7 +56,7 @@ export class ProfileController {
     @Req() req,
     @Param('username') username: string,
   ): Promise<ProfileDto | null> {
-    return this.profileService.modifyFollow(username, req.user, FollowOperation.Follow);
+    return this.profileService.modifyFollow(username, req.user, 'FOLLOW');
   }
 
   /**
@@ -82,7 +82,7 @@ export class ProfileController {
     @Req() req,
     @Param('username') username: string,
   ): Promise<ProfileDto | null> {
-    return this.profileService.modifyFollow(username, req.user, FollowOperation.Unfollow);
+    return this.profileService.modifyFollow(username, req.user, 'UNFOLLOW');
   }
 
   @Get('/:username/follows')

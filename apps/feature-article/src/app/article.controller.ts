@@ -263,7 +263,7 @@ export class ArticleController {
   addFavorite(@Param('slug') slug: string): Promise<ArticleDto | null> {
     return this.articleService.modifyFavorite(
       slug,
-      FavoriteOperation.Increment
+      'Increment'
     );
   }
 
@@ -289,7 +289,7 @@ export class ArticleController {
   removeFavorite(@Param('slug') slug: string): Promise<ArticleDto | null> {
     return this.articleService.modifyFavorite(
       slug,
-      FavoriteOperation.Decrement
+      'Decrement'
     );
   }
 

@@ -1,4 +1,1 @@
-export enum FavoriteOperation {
-  Increment = 'INC',
-  Decrement = 'DEC',
-}
+export type FavoriteOperation = 'Increment' | 'Decrement';
