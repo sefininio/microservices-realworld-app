@@ -1,20 +1,74 @@
 version: '3.8'
 
 services:
-    redis:
-        container_name: "realworld-redis"
-        image: redis:alpine
-        ports:
-            - 6379:6379
-        volumes:
-            - ./docker/redis:/var/lib/redis
-        restart: unless-stopped
+  redis:
+    container_name: 'realworld-redis'
+    image: redis:alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - ./docker/redis:/var/lib/redis
+    restart: unless-stopped
 
-    mongo:
-        container_name: "realworld-mongo"
-        image: mongo
-        ports:
-            - 27017:27017
-        volumes:
-            - ./docker/mongo:/data/db
-        restart: unless-stopped
+  mongo:
+    container_name: 'realworld-mongo'
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - ./docker/mongo:/data/db
+    restart: unless-stopped
+
+  feature-user:
+    container_name: 'feature-user'
+    image: feature-user
+    restart: unless-stopped
+    ports:
+      - 3334:3334
+    depends_on:
+      - mongo
+      - redis
+
+  feature-tag:
+    container_name: 'feature-tag'
+    image: feature-tag
+    restart: unless-stopped
+    ports:
+      - 3335:3335
+    depends_on:
+      - mongo
+      - redis
+
+  feature-profile:
+    container_name: 'feature-profile'
+    image: feature-profile
+    restart: unless-stopped
+    ports:
+      - 3336:3336
+    depends_on:
+      - mongo
+      - redis
+
+  feature-article:
+    container_name: 'feature-article'
+    image: feature-article
+    restart: unless-stopped
+    ports:
+      - 3337:3337
+    depends_on:
+      - mongo
+      - redis
+
+  gql-gateway:
+    container_name: 'gql-gateway'
+    image: gql-gateway
+    restart: unless-stopped
+    ports:
+      - 3330:3330
+    depends_on:
+      - mongo
+      - redis
+      - feature-user
+      - feature-tag
+      - feature-profile
+      - feature-article
