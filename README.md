@@ -16,7 +16,8 @@
 
 ## Application Bootstrap
 
-* Run `docker-compose up -d`
+* Run `yarn predeploy` to build services and create docker containers
+* Run `docker-compose up` to start containers
 * Create the mongo db:
 SSH into the mongo container:
 ```
@@ -28,9 +29,8 @@ mongo
 use realworld
 quit()
 ```
-* Change `.env` file values if required.
-* Run all services using `yarn start:all`
 * Use PostMan exported collection `realworld.postman_collection.json` for calling APIs
+* Use [Apollo Studio](https://studio.apollographql.com/sandbox/explorer) and point the sandbox to `http://localhost:3330/graphql` for executing GraphQL queries and Mutations.
 
 
 ## The feature micro services are:
