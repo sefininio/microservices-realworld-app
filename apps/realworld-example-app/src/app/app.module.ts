@@ -3,7 +3,7 @@ import { AuthModule } from '@microservices-realworld-example-app/auth';
 import { Module } from '@nestjs/common';
 import { HttpModule } from '@nestjs/axios';
 import { GraphQLModule } from '@nestjs/graphql';
-import { join } from 'path';
+import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserResolver } from './resolvers/user.resolver';
@@ -29,6 +29,8 @@ import { LoginResolver } from './resolvers/login.resolver';
     AuthModule,
     GraphQLModule.forRoot({
       autoSchemaFile: './schema.graphql',
+      plugins: [ApolloServerPluginLandingPageLocalDefault()],
+      introspection: true,
       sortSchema: true,
       context: ({ req, res, payload, connection }): ExtendedGqlExecutionContext => ({
         req,
