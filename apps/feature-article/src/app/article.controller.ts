@@ -3,11 +3,9 @@ import {
   ArticleDto,
   CommentDto,
   CreateArticleCommentDto,
-  CreateArticleDto,
-  FavoriteOperation,
-  FindAllArticleQueryDto,
+  CreateArticleDto, FindAllArticleQueryDto,
   PageDto,
-  UpdateArticleDto,
+  UpdateArticleDto
 } from '@microservices-realworld-example-app/models';
 import {
   Body,
@@ -19,7 +17,7 @@ import {
   Put,
   Query,
   Req,
-  UseGuards,
+  UseGuards
 } from '@nestjs/common';
 import { ApiCreatedResponse, ApiHeader, ApiOkResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { ArticleService } from './article.service';

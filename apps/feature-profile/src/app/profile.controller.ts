@@ -1,5 +1,5 @@
 import { JwtAuthGuard } from '@microservices-realworld-example-app/auth';
-import { FollowOperation, ProfileDto } from '@microservices-realworld-example-app/models';
+import { ProfileDto } from '@microservices-realworld-example-app/models';
 import { Controller, Delete, Get, Param, Post, Req, UseGuards } from '@nestjs/common';
 import { ApiHeader, ApiOkResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { ProfileService } from './profile.service';

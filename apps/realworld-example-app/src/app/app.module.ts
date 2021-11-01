@@ -1,8 +1,9 @@
 import { SharedModule } from '@microservices-realworld-example-app/shared';
 import { AuthModule } from '@microservices-realworld-example-app/auth';
-import { HttpModule, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
+import { HttpModule } from '@nestjs/axios';
 import { GraphQLModule } from '@nestjs/graphql';
-import { join } from 'path';
+import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserResolver } from './resolvers/user.resolver';
@@ -27,7 +28,9 @@ import { LoginResolver } from './resolvers/login.resolver';
     SharedModule,
     AuthModule,
     GraphQLModule.forRoot({
-      autoSchemaFile: join(process.cwd(), 'apps/realworld-example-app/schema.graphql'),
+      autoSchemaFile: './schema.graphql',
+      plugins: [ApolloServerPluginLandingPageLocalDefault()],
+      introspection: true,
       sortSchema: true,
       context: ({ req, res, payload, connection }): ExtendedGqlExecutionContext => ({
         req,

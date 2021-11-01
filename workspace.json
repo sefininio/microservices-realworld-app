@@ -14,10 +14,27 @@
           "executor": "@nrwl/node:build",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/realworld-example-app",
+            "outputPath": "apps/realworld-example-app/dist",
             "main": "apps/realworld-example-app/src/main.ts",
             "tsConfig": "apps/realworld-example-app/tsconfig.app.json",
-            "assets": ["apps/realworld-example-app/src/assets"]
+            "assets": [
+              "apps/realworld-example-app/src/assets",
+              {
+                "input": "./",
+                "glob": ".env",
+                "output": "./"
+              },
+              {
+                "input": "./",
+                "glob": "package.json",
+                "output": "./"
+              },
+              {
+                "input": "./",
+                "glob": "yarn.lock",
+                "output": "./"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -28,6 +45,28 @@
                 {
                   "replace": "apps/realworld-example-app/src/environments/environment.ts",
                   "with": "apps/realworld-example-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "assets": [
+                {
+                  "input": "./",
+                  "glob": ".env",
+                  "output": "./"
+                },
+                {
+                  "input": "./",
+                  "glob": "package.json",
+                  "output": "./"
+                },
+                {
+                  "input": "./",
+                  "glob": "yarn.lock",
+                  "output": "./"
+                },
+                {
+                  "input": "./",
+                  "glob": "schema.graphql",
+                  "output": "./"
                 }
               ]
             }
@@ -67,10 +106,27 @@
           "executor": "@nrwl/node:build",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/feature-article",
+            "outputPath": "apps/feature-article/dist",
             "main": "apps/feature-article/src/main.ts",
             "tsConfig": "apps/feature-article/tsconfig.app.json",
-            "assets": ["apps/feature-article/src/assets"]
+            "assets": [
+              "apps/feature-article/src/assets",
+              {
+                "input": "./",
+                "glob": ".env",
+                "output": "./"
+              },
+              {
+                "input": "./",
+                "glob": "package.json",
+                "output": "./"
+              },
+              {
+                "input": "./",
+                "glob": "yarn.lock",
+                "output": "./"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -118,10 +174,27 @@
           "executor": "@nrwl/node:build",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/feature-profile",
+            "outputPath": "apps/feature-profile/dist",
             "main": "apps/feature-profile/src/main.ts",
             "tsConfig": "apps/feature-profile/tsconfig.app.json",
-            "assets": ["apps/feature-profile/src/assets"]
+            "assets": [
+              "apps/feature-profile/src/assets",
+              {
+                "input": "./",
+                "glob": ".env",
+                "output": "./"
+              },
+              {
+                "input": "./",
+                "glob": "package.json",
+                "output": "./"
+              },
+              {
+                "input": "./",
+                "glob": "yarn.lock",
+                "output": "./"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -169,10 +242,27 @@
           "executor": "@nrwl/node:build",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/feature-tag",
+            "outputPath": "apps/feature-tag/dist",
             "main": "apps/feature-tag/src/main.ts",
             "tsConfig": "apps/feature-tag/tsconfig.app.json",
-            "assets": ["apps/feature-tag/src/assets"]
+            "assets": [
+              "apps/feature-tag/src/assets",
+              {
+                "input": "./",
+                "glob": ".env",
+                "output": "./"
+              },
+              {
+                "input": "./",
+                "glob": "package.json",
+                "output": "./"
+              },
+              {
+                "input": "./",
+                "glob": "yarn.lock",
+                "output": "./"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -220,16 +310,34 @@
           "executor": "@nrwl/node:build",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/feature-user",
+            "outputPath": "apps/feature-user/dist",
             "main": "apps/feature-user/src/main.ts",
             "tsConfig": "apps/feature-user/tsconfig.app.json",
-            "assets": ["apps/feature-user/src/assets"]
+            "assets": [
+              "apps/feature-user/src/assets",
+              {
+                "input": "./",
+                "glob": ".env",
+                "output": "./"
+              },
+              {
+                "input": "./",
+                "glob": "package.json",
+                "output": "./"
+              },
+              {
+                "input": "./",
+                "glob": "yarn.lock",
+                "output": "./"
+              }
+            ]
           },
           "configurations": {
             "production": {
               "optimization": true,
               "extractLicenses": true,
               "inspect": false,
+              "vendorChunk": true,
               "fileReplacements": [
                 {
                   "replace": "apps/feature-user/src/environments/environment.ts",
