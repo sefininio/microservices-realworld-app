@@ -6,7 +6,7 @@ import { ObjectId } from 'mongodb';
  */
 export class UserDto {
   @ApiProperty()
-  readonly _id: ObjectId;
+  readonly _id?: ObjectId;
 
   @ApiProperty()
   readonly email: string;
@@ -18,14 +18,14 @@ export class UserDto {
   readonly password: string;
 
   @ApiProperty()
-  readonly bio: string;
+  readonly bio?: string;
 
   @ApiProperty()
-  readonly image: string;
+  readonly image?: string;
 
   @ApiProperty()
-  readonly createdAt: Date;
+  readonly createdAt?: Date;
 
   @ApiProperty()
-  readonly updatedAt: Date;
+  readonly updatedAt?: Date;
 }

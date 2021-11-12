@@ -1,0 +1,73 @@
+{
+  "root": "apps/feature-user",
+  "sourceRoot": "apps/feature-user/src",
+  "projectType": "application",
+  "prefix": "feature-user",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "apps/feature-user/dist",
+        "main": "apps/feature-user/src/main.ts",
+        "tsConfig": "apps/feature-user/tsconfig.app.json",
+        "assets": [
+          "apps/feature-user/src/assets",
+          {
+            "input": "./",
+            "glob": ".env",
+            "output": "./"
+          },
+          {
+            "input": "./",
+            "glob": "package.json",
+            "output": "./"
+          },
+          {
+            "input": "./",
+            "glob": "yarn.lock",
+            "output": "./"
+          }
+        ]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "vendorChunk": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/feature-user/src/environments/environment.ts",
+              "with": "apps/feature-user/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "feature-user:build",
+        "inspect": true,
+        "port": 57741
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/feature-user/**/*.ts"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/feature-user"],
+      "options": {
+        "jestConfig": "apps/feature-user/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

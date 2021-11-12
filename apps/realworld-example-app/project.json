@@ -1,0 +1,94 @@
+{
+  "root": "apps/realworld-example-app",
+  "sourceRoot": "apps/realworld-example-app/src",
+  "projectType": "application",
+  "prefix": "realworld-example-app",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "apps/realworld-example-app/dist",
+        "main": "apps/realworld-example-app/src/main.ts",
+        "tsConfig": "apps/realworld-example-app/tsconfig.app.json",
+        "assets": [
+          "apps/realworld-example-app/src/assets",
+          {
+            "input": "./",
+            "glob": ".env",
+            "output": "./"
+          },
+          {
+            "input": "./",
+            "glob": "package.json",
+            "output": "./"
+          },
+          {
+            "input": "./",
+            "glob": "yarn.lock",
+            "output": "./"
+          }
+        ]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/realworld-example-app/src/environments/environment.ts",
+              "with": "apps/realworld-example-app/src/environments/environment.prod.ts"
+            }
+          ],
+          "assets": [
+            {
+              "input": "./",
+              "glob": ".env",
+              "output": "./"
+            },
+            {
+              "input": "./",
+              "glob": "package.json",
+              "output": "./"
+            },
+            {
+              "input": "./",
+              "glob": "yarn.lock",
+              "output": "./"
+            },
+            {
+              "input": "./",
+              "glob": "schema.graphql",
+              "output": "./"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "realworld-example-app:build",
+        "inspect": true,
+        "port": 57821
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/realworld-example-app/**/*.ts"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/realworld-example-app"],
+      "options": {
+        "jestConfig": "apps/realworld-example-app/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
