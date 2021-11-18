@@ -11,6 +11,8 @@
     "build:docker:clean": "docker builder prune && docker image prune",
     "predeploy:clean": "yarn build:docker:clean && docker-compose down && docker image rm $(docker image ls -aq)",
     "predeploy": "yarn build:all --prod && yarn build:docker:all",
+    "build:docker:deploy": "./deploy.sh",
+    "dockerhub:build-deploy": "yarn predeploy && yarn build:docker:deploy",
     "build": "nx build",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
@@ -149,4 +151,3 @@
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
   }
 }
-

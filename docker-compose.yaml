@@ -21,7 +21,7 @@ services:
 
   feature-user:
     container_name: 'feature-user'
-    image: feature-user
+    image: sefininio/realworld-app-feature-user:1.0.0
     restart: unless-stopped
     ports:
       - 3334:3334
@@ -31,7 +31,7 @@ services:
 
   feature-tag:
     container_name: 'feature-tag'
-    image: feature-tag
+    image: sefininio/realworld-app-feature-tag:1.0.0
     restart: unless-stopped
     ports:
       - 3335:3335
@@ -41,7 +41,7 @@ services:
 
   feature-profile:
     container_name: 'feature-profile'
-    image: feature-profile
+    image: sefininio/realworld-app-feature-profile:1.0.0
     restart: unless-stopped
     ports:
       - 3336:3336
@@ -51,7 +51,7 @@ services:
 
   feature-article:
     container_name: 'feature-article'
-    image: feature-article
+    image: sefininio/realworld-app-feature-article:1.0.0
     restart: unless-stopped
     ports:
       - 3337:3337
@@ -61,7 +61,7 @@ services:
 
   gql-gateway:
     container_name: 'gql-gateway'
-    image: gql-gateway
+    image: sefininio/realworld-app-gql-gateway:1.0.0
     restart: unless-stopped
     ports:
       - 3330:3330
